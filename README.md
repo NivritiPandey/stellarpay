@@ -44,9 +44,10 @@ contracts/
 
 ---
 
-## 🚀 Deployed Testnet Contract Proof
+## 🚀 Deployed Testnet Contract & App Proof
 
-The smart contracts are compiled, deployed, initialized, and verified on the **Stellar Testnet**:
+The application is deployed and the smart contracts are verified on the **Stellar Testnet**:
+*   **Live App Deployment**: [https://stellarpay-phi.vercel.app/](https://stellarpay-phi.vercel.app/)
 *   **Registry Contract Address**: `CBZD7SUMJYITJLX33IS3IXIIIPS7TRO5IM5TAGKJNINVY3I6O44VK56P`
 *   **Reward Vault Contract Address**: `CCE45FVYK5ZZHG2JHJZ5LMZKDH7P3IDBIKHE7RQLDBWEBSDZLPIX42QL`
 *   **Initialization Tx Hash**: `80a65f7740a0b589e1a9424bf98600e12ea8d2ef` (Initial setup and linking sequence)
