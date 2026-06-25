@@ -1,7 +1,7 @@
 import type { WalletProvider } from '../types';
 import {
   isConnected,
-  getAddress,
+  requestAccess,
   getNetwork,
   signTransaction,
 } from '@stellar/freighter-api';
@@ -26,7 +26,7 @@ export class FreighterWalletProvider implements WalletProvider {
       throw new Error('Freighter Wallet not detected. Please install the browser extension.');
     }
 
-    const keyResult = await getAddress();
+    const keyResult = await requestAccess();
     if (keyResult.error) {
       throw new Error(keyResult.error || 'User denied wallet authorization.');
     }
