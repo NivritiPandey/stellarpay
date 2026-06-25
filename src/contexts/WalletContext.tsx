@@ -5,6 +5,7 @@ import { FreighterWalletProvider } from '../wallet/providers/freighter';
 import { AlbedoWalletProvider } from '../wallet/providers/albedo';
 import { SecretKeyWalletProvider } from '../wallet/providers/secret_key';
 import { MnemonicWalletProvider } from '../wallet/providers/mnemonic';
+import * as StellarSdk from '@stellar/stellar-sdk';
 
 export type ToastType = 'success' | 'error' | 'info';
 
@@ -53,6 +54,9 @@ class MockWalletProvider implements IWalletProvider {
   }
 
   setPublicKey(key: string) {
+    if (!StellarSdk.StrKey.isValidEd25519PublicKey(key)) {
+      throw new Error('Invalid Stellar public key format.');
+    }
     this.pubKey = key;
     sessionStorage.setItem('stellarpay_mock_public_key', key);
   }
