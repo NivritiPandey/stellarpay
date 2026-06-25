@@ -1,5 +1,7 @@
 # StellarPay Student Wallet & Soroban Rewards - Level 2
 
+**Live Deployment:** [https://stellarpay-phi.vercel.app/](https://stellarpay-phi.vercel.app/)
+
 StellarPay is a production-quality Stellar dApp designed specifically for students. It combines the speed of the Stellar network with the power of Soroban smart contracts to create a modern, rewarding payment ecosystem.
 
 This repository contains both the **Soroban smart contracts** and the **Vite React frontend**, fully integrated and deployed on the Stellar Testnet.
