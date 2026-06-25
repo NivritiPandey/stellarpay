@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>StellarPay Dashboard</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Geist:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-tertiary": "#003640",
+                        "secondary-container": "#0566d9",
+                        "inverse-primary": "#732ee4",
+                        "surface-container-high": "#272a31",
+                        "tertiary-container": "#007184",
+                        "secondary-fixed": "#d8e2ff",
+                        "outline": "#958da1",
+                        "secondary": "#adc6ff",
+                        "inverse-surface": "#e1e2eb",
+                        "on-tertiary-fixed": "#001f26",
+                        "surface-bright": "#363940",
+                        "tertiary": "#4cd7f6",
+                        "on-background": "#e1e2eb",
+                        "background": "#10131a",
+                        "on-error-container": "#ffdad6",
+                        "error-container": "#93000a",
+                        "on-primary-container": "#ede0ff",
+                        "on-secondary-fixed-variant": "#004395",
+                        "on-surface-variant": "#ccc3d8",
+                        "on-tertiary-container": "#b7efff",
+                        "surface-container-lowest": "#0b0e14",
+                        "on-secondary-container": "#e6ecff",
+                        "surface-variant": "#32353c",
+                        "outline-variant": "#4a4455",
+                        "surface-dim": "#10131a",
+                        "primary-fixed-dim": "#d2bbff",
+                        "inverse-on-surface": "#2e3037",
+                        "primary-fixed": "#eaddff",
+                        "surface-container-low": "#191c22",
+                        "tertiary-fixed": "#acedff",
+                        "surface": "#10131a",
+                        "surface-container": "#1d2026",
+                        "on-secondary": "#002e6a",
+                        "on-primary-fixed-variant": "#5a00c6",
+                        "secondary-fixed-dim": "#adc6ff",
+                        "tertiary-fixed-dim": "#4cd7f6",
+                        "on-secondary-fixed": "#001a42",
+                        "on-tertiary-fixed-variant": "#004e5c",
+                        "on-primary-fixed": "#25005a",
+                        "surface-tint": "#d2bbff",
+                        "primary-container": "#7c3aed",
+                        "surface-container-highest": "#32353c",
+                        "error": "#ffb4ab",
+                        "on-surface": "#e1e2eb",
+                        "on-error": "#690005",
+                        "on-primary": "#3f008e",
+                        "primary": "#d2bbff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "container-padding-desktop": "40px",
+                        "stack-md": "16px",
+                        "gutter": "24px",
+                        "unit": "4px",
+                        "container-padding-mobile": "16px",
+                        "stack-lg": "32px",
+                        "stack-sm": "8px"
+                    },
+                    "fontFamily": {
+                        "headline-md": ["Geist"],
+                        "display": ["Geist"],
+                        "headline-lg": ["Geist"],
+                        "body-lg": ["Inter"],
+                        "headline-lg-mobile": ["Geist"],
+                        "body-md": ["Inter"],
+                        "label-md": ["Geist"],
+                        "label-sm": ["Geist"]
+                    },
+                    "fontSize": {
+                        "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                        "display": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.04em", "fontWeight": "700"}],
+                        "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "600"}],
+                        "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                        "headline-lg-mobile": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.02em", "fontWeight": "600"}],
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.02em", "fontWeight": "500"}],
+                        "label-sm": ["12px", {"lineHeight": "16px", "fontWeight": "600"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .glass-card {
+            backdrop-filter: blur(12px);
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .skeleton {
+            background: linear-gradient(90deg, rgba(255,255,255,0.05) 25%, rgba(255,255,255,0.1) 50%, rgba(255,255,255,0.05) 75%);
+            background-size: 200% 100%;
+            animation: skeleton-loading 1.5s infinite;
+        }
+        @keyframes skeleton-loading {
+            0% { background-position: 200% 0; }
+            100% { background-position: -200% 0; }
+        }
+        body {
+            background-color: #0b0e14;
+            color: #e1e2eb;
+            overflow-x: hidden;
+        }
+        .bg-fixed-image {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            opacity: 0.15;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+    </style>
+</head>
+<body class="font-body-md text-body-md">
+<div class="bg-fixed-image" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBMU-FCok5SbajroneG0PvnHssjf2C0eDwDw03nAJHlMDXZWeNYy3KnilNYvXKuusbFj_lwdqxFlDo9sXfWef2vlGQuff0DSEYBw1vc6d-0ZCNwLhDlIzB5USMlqPdTYM__K4i3YtgO_uRBNC6DEMAdY4FrnSkSNkhNxw73AgnY9PdHpmFhZDq1-q5mTh6bMLjr7NIaaIBSSk_Gn-UHj8CGsZmxutknSCi_BE2eWZv4r0KcZehOxT1zG8KoXXjaAguet2seGs8tKOo')"></div>
+<!-- SideNavBar Shell -->
+<aside class="hidden lg:flex flex-col p-stack-md gap-stack-sm h-screen w-64 fixed left-0 top-0 bg-surface-container-low/50 backdrop-blur-xl border-r border-white/5 shadow-2xl z-40">
+<div class="flex items-center gap-3 mb-stack-lg px-2">
+<div class="w-10 h-10 rounded-xl bg-primary-container flex items-center justify-center text-on-primary-container">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">rocket_launch</span>
+</div>
+<div>
+<h1 class="font-headline-md text-headline-md font-bold text-primary">StellarPay</h1>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Testnet Connected</p>
+</div>
+</div>
+<nav class="flex flex-col gap-1 flex-1">
+<a class="flex items-center gap-3 px-4 py-3 bg-primary-container text-on-primary-container rounded-xl font-bold transition-transform active:scale-98" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="font-label-md text-label-md">Dashboard</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-white/5 hover:translate-x-1 rounded-xl transition-all active:scale-98" href="#">
+<span class="material-symbols-outlined">send</span>
+<span class="font-label-md text-label-md">Send</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-white/5 hover:translate-x-1 rounded-xl transition-all active:scale-98" href="#">
+<span class="material-symbols-outlined">military_tech</span>
+<span class="font-label-md text-label-md">Rewards</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-white/5 hover:translate-x-1 rounded-xl transition-all active:scale-98" href="#">
+<span class="material-symbols-outlined">event</span>
+<span class="font-label-md text-label-md">Events</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-white/5 hover:translate-x-1 rounded-xl transition-all active:scale-98" href="#">
+<span class="material-symbols-outlined">explore</span>
+<span class="font-label-md text-label-md">Explorer</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-white/5 hover:translate-x-1 rounded-xl transition-all active:scale-98" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="font-label-md text-label-md">Settings</span>
+</a>
+</nav>
+<button class="mt-auto w-full bg-primary text-on-primary py-3 rounded-xl font-bold hover:brightness-110 active:scale-95 transition-all">
+            Connect Wallet
+        </button>
+</aside>
+<!-- Main Content Area -->
+<main class="lg:ml-64 min-h-screen pb-24 lg:pb-0">
+<!-- TopNavBar Shell (Web & Mobile) -->
+<header class="sticky top-0 z-30 w-full px-container-padding-mobile md:px-container-padding-desktop py-stack-md flex justify-between items-center bg-surface/80 backdrop-blur-xl border-b border-white/10 shadow-sm">
+<div class="flex items-center gap-stack-md">
+<div class="lg:hidden w-8 h-8 rounded-lg bg-primary flex items-center justify-center text-on-primary mr-2">
+<span class="material-symbols-outlined text-[20px]">rocket_launch</span>
+</div>
+<h2 class="font-headline-md text-headline-md lg:hidden">StellarPay</h2>
+<div class="hidden md:flex items-center bg-surface-container-lowest border border-white/10 rounded-full px-4 py-1.5 w-64 focus-within:border-primary transition-colors">
+<span class="material-symbols-outlined text-on-surface-variant text-[20px] mr-2">search</span>
+<input class="bg-transparent border-none focus:ring-0 text-label-md w-full placeholder:text-on-surface-variant/50" placeholder="Search assets..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-stack-md">
+<button class="material-symbols-outlined p-2 hover:bg-white/5 rounded-full text-on-surface-variant transition-colors active:scale-95">notifications</button>
+<div class="hidden sm:flex items-center gap-2 glass-card rounded-full pl-3 pr-2 py-1.5">
+<span class="w-2 h-2 rounded-full bg-tertiary shadow-[0_0_8px_rgba(76,215,246,0.6)]"></span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">GC...4F8K</span>
+<span class="bg-tertiary/10 text-tertiary px-2 py-0.5 rounded-full text-[10px] font-bold tracking-wider">TESTNET</span>
+<div class="w-7 h-7 rounded-full bg-gradient-to-tr from-primary to-secondary flex items-center justify-center ml-1">
+<span class="material-symbols-outlined text-[16px] text-on-primary">account_balance_wallet</span>
+</div>
+</div>
+</div>
+</header>
+<!-- Content Canvas -->
+<div class="p-container-padding-mobile md:p-container-padding-desktop max-w-7xl mx-auto space-y-stack-lg">
+<section class="grid grid-cols-1 md:grid-cols-12 gap-gutter">
+<!-- Wallet Overview (Main Focus) -->
+<div class="md:col-span-7 glass-card rounded-3xl p-stack-lg relative overflow-hidden group">
+<!-- Decorative Gradient -->
+<div class="absolute -top-24 -right-24 w-64 h-64 bg-primary/20 blur-[100px] pointer-events-none group-hover:bg-primary/30 transition-colors"></div>
+<div class="flex justify-between items-start mb-10">
+<div>
+<p class="font-label-md text-label-md text-on-surface-variant uppercase tracking-widest mb-1">Total Balance</p>
+<h3 class="font-display text-[42px] leading-none mb-2">1,240.50 <span class="text-primary">XLM</span></h3>
+<p class="text-on-surface-variant flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[18px]">verified_user</span>
+<span class="font-label-sm text-label-sm">GC...4F8K • Secured by Stellar</span>
+</p>
+</div>
+<div class="bg-tertiary/10 border border-tertiary/20 text-tertiary px-4 py-2 rounded-2xl flex items-center gap-2">
+<span class="relative flex h-3 w-3">
+<span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-tertiary opacity-75"></span>
+<span class="relative inline-flex rounded-full h-3 w-3 bg-tertiary"></span>
+</span>
+<span class="font-label-md text-label-md font-bold">Connected</span>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-stack-md pt-4 border-t border-white/5">
+<div>
+<p class="font-label-sm text-label-sm text-on-surface-variant mb-1">Est. Value</p>
+<p class="font-headline-md text-headline-md">$148.86 USD</p>
+</div>
+<div class="text-right">
+<p class="font-label-sm text-label-sm text-on-surface-variant mb-1">Network</p>
+<p class="font-headline-md text-headline-md text-tertiary">Horizon v2.0</p>
+</div>
+</div>
+</div>
+<!-- Quick Actions Bento -->
+<div class="md:col-span-5 grid grid-cols-2 gap-gutter">
+<button class="glass-card rounded-3xl p-stack-md flex flex-col items-center justify-center gap-2 group hover:bg-primary/5 transition-all active:scale-95 border-b-4 border-b-primary/40">
+<div class="w-12 h-12 rounded-2xl bg-primary/10 text-primary flex items-center justify-center group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-3xl">send</span>
+</div>
+<span class="font-label-md text-label-md font-bold">Send XLM</span>
+</button>
+<button class="glass-card rounded-3xl p-stack-md flex flex-col items-center justify-center gap-2 group hover:bg-secondary/5 transition-all active:scale-95 border-b-4 border-b-secondary/40">
+<div class="w-12 h-12 rounded-2xl bg-secondary/10 text-secondary flex items-center justify-center group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-3xl">star</span>
+</div>
+<span class="font-label-md text-label-md font-bold">Rewards</span>
+</button>
+<button class="glass-card rounded-3xl p-stack-md flex flex-col items-center justify-center gap-2 group hover:bg-tertiary/5 transition-all active:scale-95 border-b-4 border-b-tertiary/40 col-span-2">
+<div class="w-10 h-10 rounded-2xl bg-tertiary/10 text-tertiary flex items-center justify-center group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined">event</span>
+</div>
+<span class="font-label-md text-label-md font-bold">Upcoming Events</span>
+</button>
+</div>
+</section>
+<!-- Secondary Row: Activity & Network -->
+<section class="grid grid-cols-1 md:grid-cols-12 gap-gutter">
+<!-- Recent Activity List -->
+<div class="md:col-span-8 glass-card rounded-3xl p-stack-lg">
+<div class="flex justify-between items-center mb-6">
+<h4 class="font-headline-md text-headline-md">Recent Activity</h4>
+<button class="text-primary font-label-md text-label-md hover:underline">View Ledger</button>
+</div>
+<div class="space-y-1">
+<!-- Transaction 1 -->
+<div class="flex items-center justify-between p-4 rounded-2xl hover:bg-white/5 transition-colors group">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-xl bg-error-container/20 text-error flex items-center justify-center">
+<span class="material-symbols-outlined">arrow_outward</span>
+</div>
+<div>
+<p class="font-label-md text-label-md font-bold">Sent to GDS2...X9W</p>
+<p class="text-[12px] text-on-surface-variant">Today, 2:45 PM</p>
+</div>
+</div>
+<div class="text-right">
+<p class="font-label-md text-label-md font-bold text-error">- 50.00 XLM</p>
+<span class="text-[10px] bg-secondary-container/10 text-secondary-container px-2 py-0.5 rounded-full font-bold uppercase tracking-tighter">Success</span>
+</div>
+</div>
+<!-- Divider -->
+<div class="h-px bg-white/5 mx-4"></div>
+<!-- Transaction 2 -->
+<div class="flex items-center justify-between p-4 rounded-2xl hover:bg-white/5 transition-colors">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-xl bg-tertiary-container/20 text-tertiary flex items-center justify-center">
+<span class="material-symbols-outlined">call_received</span>
+</div>
+<div>
+<p class="font-label-md text-label-md font-bold">Stellar Faucet Drop</p>
+<p class="text-[12px] text-on-surface-variant">Yesterday, 10:12 AM</p>
+</div>
+</div>
+<div class="text-right">
+<p class="font-label-md text-label-md font-bold text-tertiary">+ 10,000.00 XLM</p>
+<span class="text-[10px] bg-secondary-container/10 text-secondary-container px-2 py-0.5 rounded-full font-bold uppercase tracking-tighter">Success</span>
+</div>
+</div>
+<div class="h-px bg-white/5 mx-4"></div>
+<!-- Transaction 3 -->
+<div class="flex items-center justify-between p-4 rounded-2xl hover:bg-white/5 transition-colors">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-xl bg-on-surface-variant/10 text-on-surface-variant flex items-center justify-center">
+<span class="material-symbols-outlined">refresh</span>
+</div>
+<div>
+<p class="font-label-md text-label-md font-bold">Swap XLM to USDC</p>
+<p class="text-[12px] text-on-surface-variant">Oct 24, 2023</p>
+</div>
+</div>
+<div class="text-right">
+<p class="font-label-md text-label-md font-bold">120.00 XLM</p>
+<span class="text-[10px] bg-outline/10 text-outline px-2 py-0.5 rounded-full font-bold uppercase tracking-tighter">Failed</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Network Status Card -->
+<div class="md:col-span-4 flex flex-col gap-gutter">
+<div class="glass-card rounded-3xl p-stack-lg flex-1">
+<h4 class="font-label-md text-label-md font-bold mb-4 flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px]">hub</span>
+                            Network Health
+                        </h4>
+<div class="space-y-4">
+<div class="flex justify-between items-end">
+<span class="font-label-sm text-label-sm text-on-surface-variant">Status</span>
+<span class="font-label-sm text-label-sm font-bold text-tertiary">Healthy</span>
+</div>
+<div class="w-full bg-white/10 h-1 rounded-full overflow-hidden">
+<div class="bg-tertiary h-full w-[98%]"></div>
+</div>
+<div class="grid grid-cols-2 gap-4 pt-2">
+<div>
+<p class="text-[10px] text-on-surface-variant uppercase font-bold">Ops/Sec</p>
+<p class="font-headline-md text-headline-md">248</p>
+</div>
+<div>
+<p class="text-[10px] text-on-surface-variant uppercase font-bold">Fee</p>
+<p class="font-headline-md text-headline-md">100<span class="text-label-sm"> stroops</span></p>
+</div>
+</div>
+</div>
+</div>
+<div class="bg-surface-container-highest rounded-3xl p-6 border border-white/5">
+<h4 class="font-label-md text-label-md font-bold mb-3">Community Reward</h4>
+<p class="text-label-sm text-on-surface-variant mb-4 leading-relaxed">Stake your XLM to earn up to 5.2% APR in weekly rewards.</p>
+<button class="w-full py-2 bg-white/5 border border-white/10 rounded-xl font-label-md text-label-md hover:bg-white/10 transition-colors">Start Staking</button>
+</div>
+</div>
+</section>
+<!-- Loading Skeletons Demo Section (Instructional) -->
+<section class="glass-card rounded-3xl p-stack-lg">
+<h4 class="font-label-md text-label-md font-bold mb-6 text-on-surface-variant">Asset Loading Preview</h4>
+<div class="grid grid-cols-1 sm:grid-cols-3 gap-gutter">
+<div class="space-y-3">
+<div class="skeleton h-12 w-12 rounded-xl"></div>
+<div class="skeleton h-6 w-3/4 rounded-md"></div>
+<div class="skeleton h-4 w-1/2 rounded-md"></div>
+</div>
+<div class="space-y-3">
+<div class="skeleton h-12 w-12 rounded-xl"></div>
+<div class="skeleton h-6 w-3/4 rounded-md"></div>
+<div class="skeleton h-4 w-1/2 rounded-md"></div>
+</div>
+<div class="space-y-3">
+<div class="skeleton h-12 w-12 rounded-xl"></div>
+<div class="skeleton h-6 w-3/4 rounded-md"></div>
+<div class="skeleton h-4 w-1/2 rounded-md"></div>
+</div>
+</div>
+</section>
+</div>
+</main>
+<!-- BottomNavBar (Mobile Only) -->
+<nav class="lg:hidden fixed bottom-0 left-0 w-full z-50 flex justify-around items-center h-20 pb-safe px-4 bg-surface-container-highest/80 backdrop-blur-2xl border-t border-white/10 shadow-[0_-4px_12px_rgba(0,0,0,0.5)]">
+<a class="flex flex-col items-center justify-center text-primary font-bold" href="#">
+<span class="material-symbols-outlined">home</span>
+<span class="font-label-sm text-label-sm">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant" href="#">
+<span class="material-symbols-outlined">send</span>
+<span class="font-label-sm text-label-sm">Send</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant" href="#">
+<span class="material-symbols-outlined">star</span>
+<span class="font-label-sm text-label-sm">Rewards</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant" href="#">
+<span class="material-symbols-outlined">search</span>
+<span class="font-label-sm text-label-sm">Explore</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="font-label-sm text-label-sm">Settings</span>
+</a>
+</nav>
+<script>
+        // Micro-interaction for balance hover
+        const balanceCard = document.querySelector('.group');
+        if(balanceCard) {
+            balanceCard.addEventListener('mousemove', (e) => {
+                const rect = balanceCard.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                const gradient = balanceCard.querySelector('.blur-\\[100px\\]');
+                gradient.style.transform = `translate(${x - 128}px, ${y - 128}px)`;
+            });
+        }
+    </script>
+</body></html>
