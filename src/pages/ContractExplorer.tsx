@@ -197,7 +197,7 @@ export const ContractExplorer: React.FC = () => {
     <div className="space-y-stack-lg animate-fade-in-up text-gray-900 dark:text-white pb-8">
       {/* Contract ID Header Card */}
       <section className="mb-stack-lg">
-        <div className="glass-card rounded-2xl p-6 lg:p-8 flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6 overflow-hidden relative border-gray-200 dark:border-white/5">
+        <div className="glass-card rounded-3xl p-6 lg:p-8 flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6 overflow-hidden relative border-gray-200 dark:border-white/5">
           {/* Atmospheric background element */}
           <div className="absolute -top-24 -right-24 w-64 h-64 bg-primary/10 blur-[100px] rounded-full"></div>
           <div className="z-10 w-full lg:w-auto">
@@ -222,11 +222,11 @@ export const ContractExplorer: React.FC = () => {
             </div>
           </div>
           <div className="z-10 flex gap-4 w-full lg:w-auto text-gray-900 dark:text-white">
-            <div className="flex-1 lg:flex-none bg-gray-100 dark:bg-black/20 p-4 rounded-xl border border-gray-200 dark:border-white/5 text-center min-w-[100px]">
+            <div className="flex-1 lg:flex-none bg-gray-100 dark:bg-black/20 p-4 rounded-2xl border border-gray-200 dark:border-white/5 text-center min-w-[100px]">
               <p className="text-[11px] text-gray-500 dark:text-on-surface-variant uppercase tracking-widest font-bold mb-1">Total Calls</p>
               <p className="text-2xl font-bold text-gray-900 dark:text-white">1.2M</p>
             </div>
-            <div className="flex-1 lg:flex-none bg-gray-100 dark:bg-black/20 p-4 rounded-xl border border-gray-200 dark:border-white/5 text-center min-w-[100px]">
+            <div className="flex-1 lg:flex-none bg-gray-100 dark:bg-black/20 p-4 rounded-2xl border border-gray-200 dark:border-white/5 text-center min-w-[100px]">
               <p className="text-[11px] text-gray-500 dark:text-on-surface-variant uppercase tracking-widest font-bold mb-1">Gas Used</p>
               <p className="text-2xl font-bold text-tertiary">42.8 Gwei</p>
             </div>
@@ -239,14 +239,14 @@ export const ContractExplorer: React.FC = () => {
         {/* Left Side: Function Call Interface */}
         <div className="xl:col-span-7 space-y-4">
           <div className="flex items-center justify-between mb-2">
-            <h4 className="font-headline-md text-on-surface font-bold">Contract Functions</h4>
-            <span className="text-[12px] text-on-surface-variant">7 Executable Hooks Found</span>
+            <h4 className="font-headline-md text-gray-900 dark:text-white font-bold">Contract Functions</h4>
+            <span className="text-[12px] text-gray-500 dark:text-on-surface-variant">7 Executable Hooks Found</span>
           </div>
 
           {/* Function: register_student */}
-          <div className="glass-card rounded-xl overflow-hidden border-white/5">
-            <button
-              className="w-full flex items-center justify-between p-5 text-left transition-colors hover:bg-white/5"
+          <div className="glass-card rounded-3xl overflow-hidden">
+            <button 
+              className="w-full flex items-center justify-between p-5 text-left transition-colors hover:bg-gray-100 dark:hover:bg-white/5"
               onClick={() => setOpenPanel(openPanel === 'register' ? null : 'register')}
             >
               <div className="flex items-center gap-4">
@@ -254,64 +254,64 @@ export const ContractExplorer: React.FC = () => {
                   <span className="material-symbols-outlined">person_add</span>
                 </div>
                 <div>
-                  <p className="font-bold text-on-surface font-bold">register_student</p>
-                  <p className="text-[12px] text-on-surface-variant">Registers a new wallet address to the rewards program</p>
+                  <p className="font-bold text-gray-900 dark:text-white font-bold">register_student</p>
+                  <p className="text-[12px] text-gray-500 dark:text-on-surface-variant">Registers a new wallet address to the rewards program</p>
                 </div>
               </div>
               <span className={`material-symbols-outlined transition-transform duration-300 ${openPanel === 'register' ? 'rotate-180' : ''}`}>expand_more</span>
             </button>
             {openPanel === 'register' && (
-              <div className="p-5 pt-2 border-t border-white/5 bg-[#10131a]/40">
+              <div className="p-5 pt-2 border-t border-gray-200 dark:border-white/5 bg-gray-50/50 dark:bg-[#10131a]/40">
                 <form className="space-y-4" onSubmit={(e) => { e.preventDefault(); handleRegister(); }}>
                   <div className="space-y-2">
-                    <label className="text-[12px] font-bold text-on-surface-variant uppercase ml-1">Student Wallet (Address)</label>
-                    <input
-                      type="text"
+                    <label className="text-[12px] font-bold text-gray-500 dark:text-on-surface-variant uppercase ml-1">Student Wallet (Address)</label>
+                    <input 
+                      type="text" 
                       value={registerWallet}
                       onChange={(e) => setRegisterWallet(e.target.value)}
                       placeholder="G... (leave blank for self)"
-                      className="w-full bg-black/40 border border-white/10 rounded-xl px-4 py-3 focus:outline-none focus:border-primary transition-colors text-on-surface text-sm"
+                      className="w-full bg-white dark:bg-black/40 border border-gray-250 dark:border-white/10 rounded-xl px-4 py-3 focus:outline-none focus:border-primary transition-colors text-gray-900 dark:text-on-surface text-sm placeholder:text-gray-400 dark:placeholder:text-on-surface-variant/40"
                     />
                   </div>
                   <div className="space-y-2">
-                    <label className="text-[12px] font-bold text-on-surface-variant uppercase ml-1">Student Name</label>
-                    <input
-                      type="text"
+                    <label className="text-[12px] font-bold text-gray-500 dark:text-on-surface-variant uppercase ml-1">Student Name</label>
+                    <input 
+                      type="text" 
                       value={registerName}
                       onChange={(e) => setRegisterName(e.target.value)}
                       placeholder="Enter full name"
-                      className="w-full bg-black/40 border border-white/10 rounded-xl px-4 py-3 focus:outline-none focus:border-primary transition-colors text-on-surface text-sm"
+                      className="w-full bg-white dark:bg-black/40 border border-gray-250 dark:border-white/10 rounded-xl px-4 py-3 focus:outline-none focus:border-primary transition-colors text-gray-900 dark:text-on-surface text-sm placeholder:text-gray-400 dark:placeholder:text-on-surface-variant/40"
                       required
                     />
                   </div>
                   <div className="grid grid-cols-2 gap-4">
                     <div className="space-y-2">
-                      <label className="text-[12px] font-bold text-on-surface-variant uppercase ml-1">Metadata Hash</label>
-                      <input
-                        type="text"
+                      <label className="text-[12px] font-bold text-gray-500 dark:text-on-surface-variant uppercase ml-1">Metadata Hash</label>
+                      <input 
+                        type="text" 
                         value={metadataHash}
                         onChange={(e) => setMetadataHash(e.target.value)}
                         placeholder="0x..."
-                        className="w-full bg-black/40 border border-white/10 rounded-xl px-4 py-3 focus:outline-none focus:border-primary transition-colors text-on-surface text-sm"
+                        className="w-full bg-white dark:bg-black/40 border border-gray-250 dark:border-white/10 rounded-xl px-4 py-3 focus:outline-none focus:border-primary transition-colors text-gray-900 dark:text-on-surface text-sm placeholder:text-gray-400 dark:placeholder:text-on-surface-variant/40"
                       />
                     </div>
                     <div className="space-y-2">
-                      <label className="text-[12px] font-bold text-on-surface-variant uppercase ml-1">Referral Code</label>
-                      <input
-                        type="text"
+                      <label className="text-[12px] font-bold text-gray-500 dark:text-on-surface-variant uppercase ml-1">Referral Code</label>
+                      <input 
+                        type="text" 
                         value={referralCode}
                         onChange={(e) => setReferralCode(e.target.value)}
                         placeholder="Optional"
-                        className="w-full bg-black/40 border border-white/10 rounded-xl px-4 py-3 focus:outline-none focus:border-primary transition-colors text-on-surface text-sm"
+                        className="w-full bg-white dark:bg-black/40 border border-gray-250 dark:border-white/10 rounded-xl px-4 py-3 focus:outline-none focus:border-primary transition-colors text-gray-900 dark:text-on-surface text-sm placeholder:text-gray-400 dark:placeholder:text-on-surface-variant/40"
                       />
                     </div>
                   </div>
                   <div className="flex items-center justify-between pt-4">
-                    <div className="flex items-center gap-2 text-on-surface-variant">
+                    <div className="flex items-center gap-2 text-gray-500 dark:text-on-surface-variant">
                       <span className="material-symbols-outlined text-[18px]">info</span>
                       <span className="text-[12px]">Est. Cost: 0.002 XLM</span>
                     </div>
-                    <button
+                    <button 
                       type="submit"
                       className="px-6 py-2.5 bg-primary-container text-white rounded-xl font-bold shadow-lg shadow-primary/20 hover:brightness-110 active:scale-95 transition-all text-sm"
                     >
@@ -324,9 +324,9 @@ export const ContractExplorer: React.FC = () => {
           </div>
 
           {/* Function: reward_student */}
-          <div className="glass-card rounded-xl overflow-hidden border-white/5">
-            <button
-              className="w-full flex items-center justify-between p-5 text-left transition-colors hover:bg-white/5"
+          <div className="glass-card rounded-3xl overflow-hidden">
+            <button 
+              className="w-full flex items-center justify-between p-5 text-left transition-colors hover:bg-gray-100 dark:hover:bg-white/5"
               onClick={() => setOpenPanel(openPanel === 'reward' ? null : 'reward')}
             >
               <div className="flex items-center gap-4">
@@ -334,8 +334,8 @@ export const ContractExplorer: React.FC = () => {
                   <span className="material-symbols-outlined">military_tech</span>
                 </div>
                 <div>
-                  <p className="font-bold text-on-surface font-bold">reward_student</p>
-                  <p className="text-[12px] text-on-surface-variant">Allocates tokens based on curriculum completion</p>
+                  <p className="font-bold text-gray-900 dark:text-white font-bold">reward_student</p>
+                  <p className="text-[12px] text-gray-500 dark:text-on-surface-variant">Allocates tokens based on curriculum completion</p>
                 </div>
               </div>
               <span className={`material-symbols-outlined transition-transform duration-300 ${openPanel === 'reward' ? 'rotate-180' : ''}`}>expand_more</span>
@@ -386,9 +386,9 @@ export const ContractExplorer: React.FC = () => {
           </div>
 
           {/* Function: get_student_points */}
-          <div className="glass-card rounded-xl overflow-hidden border-white/5">
-            <button
-              className="w-full flex items-center justify-between p-5 text-left transition-colors hover:bg-white/5"
+          <div className="glass-card rounded-3xl overflow-hidden">
+            <button 
+              className="w-full flex items-center justify-between p-5 text-left transition-colors hover:bg-gray-100 dark:hover:bg-white/5"
               onClick={() => setOpenPanel(openPanel === 'query' ? null : 'query')}
             >
               <div className="flex items-center gap-4">
@@ -396,8 +396,8 @@ export const ContractExplorer: React.FC = () => {
                   <span className="material-symbols-outlined">stars</span>
                 </div>
                 <div>
-                  <p className="font-bold text-on-surface font-bold">get_student_points</p>
-                  <p className="text-[12px] text-on-surface-variant">Retrieves points balance for a student address (Read Only)</p>
+                  <p className="font-bold text-gray-900 dark:text-white font-bold">get_student_points</p>
+                  <p className="text-[12px] text-gray-500 dark:text-on-surface-variant">Retrieves points balance for a student address (Read Only)</p>
                 </div>
               </div>
               <span className={`material-symbols-outlined transition-transform duration-300 ${openPanel === 'query' ? 'rotate-180' : ''}`}>expand_more</span>
@@ -437,9 +437,9 @@ export const ContractExplorer: React.FC = () => {
           </div>
 
           {/* Function: update_contract_metadata */}
-          <div className="glass-card rounded-xl overflow-hidden border-white/5 opacity-70">
+          <div className="glass-card rounded-3xl overflow-hidden opacity-70">
             <button 
-              className="w-full flex items-center justify-between p-5 text-left transition-colors hover:bg-white/5"
+              className="w-full flex items-center justify-between p-5 text-left transition-colors hover:bg-gray-100 dark:hover:bg-white/5"
               onClick={() => setOpenPanel(openPanel === 'admin' ? null : 'admin')}
             >
               <div className="flex items-center gap-4">
@@ -447,8 +447,8 @@ export const ContractExplorer: React.FC = () => {
                   <span className="material-symbols-outlined">data_object</span>
                 </div>
                 <div>
-                  <p className="font-bold text-on-surface font-bold">update_contract_metadata</p>
-                  <p className="text-[12px] text-on-surface-variant">Admin-only function to update system parameters</p>
+                  <p className="font-bold text-gray-900 dark:text-white font-bold">update_contract_metadata</p>
+                  <p className="text-[12px] text-gray-500 dark:text-on-surface-variant">Admin-only function to update system parameters</p>
                 </div>
               </div>
               <span className={`material-symbols-outlined transition-transform duration-300 ${openPanel === 'admin' ? 'rotate-180' : ''}`}>expand_more</span>
@@ -474,15 +474,15 @@ export const ContractExplorer: React.FC = () => {
         {/* Right Side: Live Logs Terminal */}
         <div className="xl:col-span-5 flex flex-col gap-4 h-full min-h-[500px]">
           <div className="flex items-center justify-between mb-2">
-            <h4 className="font-headline-md text-on-surface font-bold">Live Execution Log</h4>
+            <h4 className="font-headline-md text-gray-900 dark:text-white font-bold">Live Execution Log</h4>
             <div className="flex items-center gap-2">
               <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span>
               <span className="text-[10px] font-bold text-green-500 uppercase tracking-widest">Streaming</span>
             </div>
           </div>
-          <div className="glass-card rounded-xl flex-1 flex flex-col overflow-hidden border-white/5 bg-black/40">
+          <div className="glass-card rounded-3xl flex-1 flex flex-col overflow-hidden border-gray-200 dark:border-white/5 bg-white dark:bg-black/40">
             {/* Terminal Header */}
-            <div className="bg-black/40 border-b border-white/5 p-4 flex items-center justify-between">
+            <div className="bg-gray-100 dark:bg-black/40 border-b border-gray-200 dark:border-white/5 p-4 flex items-center justify-between">
               <div className="flex gap-2">
                 <div className="w-3 h-3 rounded-full bg-error/40"></div>
                 <div className="w-3 h-3 rounded-full bg-yellow-400/40"></div>
@@ -490,39 +490,39 @@ export const ContractExplorer: React.FC = () => {
               </div>
               <button
                 onClick={() => setLogs([])}
-                className="text-on-surface-variant hover:text-primary transition-colors active:scale-95"
+                className="text-gray-500 dark:text-on-surface-variant hover:text-primary transition-colors active:scale-95"
                 title="Clear Logs"
               >
                 <span className="material-symbols-outlined text-[18px]">delete_sweep</span>
               </button>
             </div>
             {/* Terminal Body */}
-            <div className="flex-1 p-4 overflow-y-auto text-[13px] custom-scrollbar space-y-4 max-h-[380px] bg-[rgba(5,7,10,0.8)] font-mono">
+            <div className="flex-1 p-4 overflow-y-auto text-[13px] custom-scrollbar space-y-4 max-h-[380px] bg-gray-50 dark:bg-[rgba(5,7,10,0.8)] font-mono text-gray-900 dark:text-white">
               {logs.map((log, idx) => (
-                <div key={idx} className="space-y-2 pt-2 border-t border-white/5 first:border-0 first:pt-0">
+                <div key={idx} className="space-y-2 pt-2 border-t border-gray-200 dark:border-white/5 first:border-0 first:pt-0">
                   <div className="flex items-center justify-between">
                     <span className={`font-bold ${log.type === 'TX_SUCCESS' ? 'text-primary' :
                         log.type === 'EVENT_EMITTED' ? 'text-tertiary' :
-                          log.type === 'ERROR' ? 'text-red-400' : 'text-[#ccc3d8] animate-pulse'
+                          log.type === 'ERROR' ? 'text-red-650 dark:text-red-400' : 'text-gray-600 dark:text-[#ccc3d8] animate-pulse'
                       }`}>
                       {log.timestamp} - [{log.type}]
                     </span>
                     {log.hash && (
-                      <span className="text-[10px] text-on-surface-variant opacity-50">Hash: {log.hash.substring(0, 8)}...</span>
+                      <span className="text-[10px] text-gray-500 dark:text-on-surface-variant opacity-50 font-sans">Hash: {log.hash.substring(0, 8)}...</span>
                     )}
                   </div>
-                  <pre className="text-on-surface-variant leading-relaxed overflow-x-auto whitespace-pre-wrap font-mono text-xs">
+                  <pre className="text-gray-700 dark:text-on-surface-variant leading-relaxed overflow-x-auto whitespace-pre-wrap font-mono text-xs">
                     {JSON.stringify(log.payload, null, 2)}
                   </pre>
                 </div>
               ))}
             </div>
             {/* Terminal Footer */}
-            <div className="p-3 bg-black/40 border-t border-white/5 flex items-center gap-4">
-              <div className="flex-1 h-1 bg-white/10 rounded-full overflow-hidden">
+            <div className="p-3 bg-gray-100 dark:bg-black/40 border-t border-gray-200 dark:border-white/5 flex items-center gap-4">
+              <div className="flex-1 h-1 bg-gray-200 dark:bg-white/10 rounded-full overflow-hidden">
                 <div className="h-full bg-primary" style={{ width: '12%' }}></div>
               </div>
-              <span className="text-[10px] font-bold text-on-surface-variant uppercase tracking-widest whitespace-nowrap">Load: 12%</span>
+              <span className="text-[10px] font-bold text-gray-500 dark:text-on-surface-variant uppercase tracking-widest whitespace-nowrap">Load: 12%</span>
             </div>
           </div>
         </div>
@@ -530,35 +530,35 @@ export const ContractExplorer: React.FC = () => {
 
       {/* System Stats Footer Grid */}
       <section className="mt-stack-lg grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-        <div className="glass-card rounded-xl p-5 border-white/5">
-          <p className="text-[11px] font-bold text-on-surface-variant uppercase mb-2 tracking-widest">Network Speed</p>
+        <div className="glass-card rounded-3xl p-5 border-gray-200 dark:border-white/5 text-gray-900 dark:text-white">
+          <p className="text-[11px] font-bold text-gray-500 dark:text-on-surface-variant uppercase mb-2 tracking-widest">Network Speed</p>
           <div className="flex items-end gap-2">
-            <span className="text-2xl font-bold text-on-surface">3.2s</span>
+            <span className="text-2xl font-bold text-gray-900 dark:text-white">3.2s</span>
             <span className="text-green-500 text-xs mb-1 font-bold">+12%</span>
           </div>
         </div>
-        <div className="glass-card rounded-xl p-5 border-white/5">
-          <p className="text-[11px] font-bold text-on-surface-variant uppercase mb-2 tracking-widest">Storage Used</p>
+        <div className="glass-card rounded-3xl p-5 border-gray-200 dark:border-white/5 text-gray-900 dark:text-white">
+          <p className="text-[11px] font-bold text-gray-500 dark:text-on-surface-variant uppercase mb-2 tracking-widest">Storage Used</p>
           <div className="flex items-end gap-2">
-            <span className="text-2xl font-bold text-on-surface">148MB</span>
-            <span className="text-on-surface-variant text-xs mb-1">of 1GB</span>
+            <span className="text-2xl font-bold text-gray-900 dark:text-white">148MB</span>
+            <span className="text-gray-500 dark:text-on-surface-variant text-xs mb-1">of 1GB</span>
           </div>
         </div>
-        <div className="glass-card rounded-xl p-5 border-white/5">
-          <p className="text-[11px] font-bold text-on-surface-variant uppercase mb-2 tracking-widest">Auth Schema</p>
+        <div className="glass-card rounded-3xl p-5 border-gray-200 dark:border-white/5 text-gray-900 dark:text-white">
+          <p className="text-[11px] font-bold text-gray-500 dark:text-on-surface-variant uppercase mb-2 tracking-widest">Auth Schema</p>
           <div className="flex items-end gap-2">
-            <span className="text-2xl font-bold text-on-surface">Ed25519</span>
+            <span className="text-2xl font-bold text-gray-900 dark:text-white">Ed25519</span>
           </div>
         </div>
-        <div className="glass-card rounded-xl p-5 border-primary/20">
+        <div className="glass-card rounded-3xl p-5 border-primary/20 text-gray-900 dark:text-white">
           <p className="text-[11px] font-bold text-primary uppercase mb-2 tracking-widest">Admin Keys</p>
           <div className="flex items-center gap-2">
             <div className="flex -space-x-2">
-              <div className="w-8 h-8 rounded-full bg-primary-container border-2 border-background flex items-center justify-center text-[10px] font-bold">MK</div>
-              <div className="w-8 h-8 rounded-full bg-secondary-container border-2 border-background flex items-center justify-center text-[10px] font-bold">JD</div>
-              <div className="w-8 h-8 rounded-full bg-tertiary-container border-2 border-background flex items-center justify-center text-[10px] font-bold">AS</div>
+              <div className="w-8 h-8 rounded-full bg-primary-container border-2 border-background dark:border-black flex items-center justify-center text-[10px] font-bold text-white">MK</div>
+              <div className="w-8 h-8 rounded-full bg-secondary-container border-2 border-background dark:border-black flex items-center justify-center text-[10px] font-bold text-white">JD</div>
+              <div className="w-8 h-8 rounded-full bg-tertiary-container border-2 border-background dark:border-black flex items-center justify-center text-[10px] font-bold text-white">AS</div>
             </div>
-            <span className="text-[12px] font-bold text-on-surface ml-2 font-bold font-sans">3 Signers</span>
+            <span className="text-[12px] font-bold text-gray-900 dark:text-white ml-2 font-bold font-sans">3 Signers</span>
           </div>
         </div>
       </section>
