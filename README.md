@@ -1,4 +1,4 @@
-# StellarPay Student Wallet & Soroban Rewards - Level 2
+# StellarPay Student Wallet & Soroban Rewards - Level 3
 
 **Live Deployment:** [https://stellarpay-phi.vercel.app/](https://stellarpay-phi.vercel.app/)
 
@@ -34,9 +34,10 @@ contracts/
     *   `is_registered(student: Address) -> bool`: Checks if the student is registered.
     *   `get_student_name(student: Address) -> String`: Retrieves the student's registered name.
 
-### 2. Reward Vault Contract
+### 2. Reward Vault Contract (Inter-contract Communication)
 *   **Contract ID**: `CCE45FVYK5ZZHG2JHJZ5LMZKDH7P3IDBIKHE7RQLDBWEBSDZLPIX42QL`
 *   **Source Code**: [`contracts/reward_vault/src/lib.rs`](file:///c:/Users/SPANDEY/OneDrive%20-%20Luxmi%20Tea/Desktop/stitch_stellarpay/contracts/reward_vault/src/lib.rs)
+*   **Inter-contract Pattern**: Uses standard `StudentRegistryClient` to make cross-contract calls to verify registration on the `student_registry` contract before executing minting/claim actions.
 *   **Functions**:
     *   `initialize(registry: Address)`: Links the vault to the Student Registry contract.
     *   `register_student(student: Address, name: String)`: Proxy registration helper.
@@ -59,6 +60,29 @@ The frontend is configured to interact with the Reward Vault at `CCE45FVYK5ZZHG2
 VITE_NETWORK=testnet
 VITE_CONTRACT_ID=CCE45FVYK5ZZHG2JHJZ5LMZKDH7P3IDBIKHE7RQLDBWEBSDZLPIX42QL
 ```
+
+---
+
+## 🛠 CI/CD Pipeline
+
+The project features a automated CI/CD workflow defined in [`.github/workflows/ci.yml`](file:///c:/Users/SPANDEY/OneDrive%20-%20Luxmi%20Tea/Desktop/stitch_stellarpay/.github/workflows/ci.yml):
+- **Rust Contract Verifications**: Performs compilation targeting WebAssembly and executes unit tests for all smart contracts (`student_registry` and `reward_vault`).
+- **Frontend Build Verification**: Installs, lints, and builds the Vite React client app.
+
+---
+
+## 🧪 Smart Contract Testing
+
+To run smart contract tests locally:
+```bash
+cd contracts
+cargo test
+```
+**Test Results**:
+- `test_registration` ... ok
+- `test_unregistered_student_rewards` ... ok
+- `test_rewards_vault_flow` ... ok
+- Total: 3 passed; 0 failed
 
 ---
 
