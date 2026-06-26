@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { useWallet } from '../contexts/WalletContext';
-import { simulateAndSubmitSorobanTransaction, getRpcServer } from '../services/stellar';
+import { simulateAndSubmitSorobanTransaction, getRpcServer, CONTRACT_ID } from '../services/stellar';
 import { nativeToScVal, scValToNative, Contract, TransactionBuilder, Networks } from '@stellar/stellar-sdk';
 
 interface Milestone {
@@ -44,7 +44,7 @@ export const StudentRewards: React.FC = () => {
   const fetchStudentPoints = useCallback(async (key: string): Promise<number> => {
     try {
       const rpcServer = getRpcServer();
-      const contractId = import.meta.env.VITE_CONTRACT_ID;
+      const contractId = CONTRACT_ID;
       
       const contract = new Contract(contractId);
       const op = contract.call('get_student_points', nativeToScVal(key, { type: 'address' }));
@@ -105,7 +105,7 @@ export const StudentRewards: React.FC = () => {
     showToast('Registering student on-chain...', 'info');
 
     try {
-      const contractId = import.meta.env.VITE_CONTRACT_ID;
+      const contractId = CONTRACT_ID;
       const txHash = await simulateAndSubmitSorobanTransaction(
         publicKey!,
         contractId,
@@ -142,7 +142,7 @@ export const StudentRewards: React.FC = () => {
     showToast(`Minting ${points} academic points on-chain...`, 'info');
 
     try {
-      const contractId = import.meta.env.VITE_CONTRACT_ID;
+      const contractId = CONTRACT_ID;
       const txHash = await simulateAndSubmitSorobanTransaction(
         publicKey!,
         contractId,
@@ -184,7 +184,7 @@ export const StudentRewards: React.FC = () => {
     showToast(`Redeeming points for ${itemName}...`, 'info');
 
     try {
-      const contractId = import.meta.env.VITE_CONTRACT_ID;
+      const contractId = CONTRACT_ID;
       const txHash = await simulateAndSubmitSorobanTransaction(
         publicKey!,
         contractId,

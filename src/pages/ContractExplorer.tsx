@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useWallet } from '../contexts/WalletContext';
-import { simulateAndSubmitSorobanTransaction, getRpcServer } from '../services/stellar';
+import { simulateAndSubmitSorobanTransaction, getRpcServer, CONTRACT_ID } from '../services/stellar';
 import { nativeToScVal, scValToNative, Contract, TransactionBuilder, Networks } from '@stellar/stellar-sdk';
 
 interface LogEntry {
@@ -13,7 +13,7 @@ interface LogEntry {
 
 export const ContractExplorer: React.FC = () => {
   const { isConnected, publicKey, signTx, showToast } = useWallet();
-  const contractId = import.meta.env.VITE_CONTRACT_ID;
+  const contractId = CONTRACT_ID;
 
   // Accordion state
   const [openPanel, setOpenPanel] = useState<string | null>('register');

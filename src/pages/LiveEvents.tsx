@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import { fetchContractEvents } from '../services/stellar';
+import { fetchContractEvents, CONTRACT_ID } from '../services/stellar';
 
 interface EventItem {
   id: string;
@@ -47,7 +47,7 @@ export const LiveEvents: React.FC = () => {
   const fetchEvents = useCallback(async () => {
     setIsLoading(true);
     try {
-      const contractId = import.meta.env.VITE_CONTRACT_ID;
+      const contractId = CONTRACT_ID;
       const rawEvents = await fetchContractEvents(contractId);
       
       const formatted: EventItem[] = rawEvents.map((e: any, idx: number) => {

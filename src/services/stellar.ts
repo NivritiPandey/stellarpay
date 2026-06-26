@@ -3,6 +3,8 @@ import * as StellarSdk from '@stellar/stellar-sdk';
 const HORIZON_URL = 'https://horizon-testnet.stellar.org';
 const RPC_URL = 'https://soroban-testnet.stellar.org';
 
+export const CONTRACT_ID = import.meta.env.VITE_CONTRACT_ID || 'CCE45FVYK5ZZHG2JHJZ5LMZKDH7P3IDBIKHE7RQLDBWEBSDZLPIX42QL';
+
 export const getHorizonServer = (): StellarSdk.Horizon.Server => {
   return new StellarSdk.Horizon.Server(HORIZON_URL);
 };
