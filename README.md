@@ -4,7 +4,7 @@
 
 🎥 **Demo Video**
 
-[StellarPay Demo Video](https://drive.google.com/file/d/1XdiRBa6sInlLqmFSyftHdSAv9h8t1sje/view) (Placeholder/User Video)
+[StellarPay Demo Video] (Placeholder/User Video)
 
 🌐 **Live Demo**
 
@@ -79,6 +79,11 @@ flowchart TD
 ### CI/CD Pipeline Running
 <img width="958" height="474" alt="image" src="https://github.com/user-attachments/assets/828c2d82-798c-4d27-aac7-a917ea704c8c" />
 
+### Mobile UI Screenshot 
+![alt text](image.png)
+
+### Test case 
+![alt text](image-1.png)
 ---
 
 # Getting Started
