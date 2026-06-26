@@ -4,7 +4,7 @@
 
 🎥 **Demo Video**
 
-[StellarPay Demo Video] (Placeholder/User Video)
+https://drive.google.com/file/d/1n7bFCVEpt_LJg8dm9rIj_mqfqmmbOjBn/view?usp=sharing (Placeholder/User Video)
 
 🌐 **Live Demo**
 
