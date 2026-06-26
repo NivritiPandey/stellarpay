@@ -58,7 +58,7 @@ export const ContractExplorer: React.FC = () => {
       showToast('Wallet not connected', 'error');
       return;
     }
-    
+
     const targetWallet = registerWallet.trim() || publicKey;
     const targetName = registerName.trim();
     if (!targetName) {
@@ -159,17 +159,17 @@ export const ContractExplorer: React.FC = () => {
       const rpcServer = getRpcServer();
       const contract = new Contract(contractId);
       const op = contract.call('get_student_points', nativeToScVal(targetWallet, { type: 'address' }));
-      
+
       const sender = publicKey || targetWallet;
       const account = await rpcServer.getAccount(sender);
       const tx = new TransactionBuilder(account, {
         fee: '100',
         networkPassphrase: Networks.TESTNET,
       })
-      .addOperation(op)
-      .setTimeout(30)
-      .build();
-      
+        .addOperation(op)
+        .setTimeout(30)
+        .build();
+
       const simulation = (await rpcServer.simulateTransaction(tx)) as any;
       if (simulation.result) {
         const val = scValToNative(simulation.result.retval);
@@ -245,7 +245,7 @@ export const ContractExplorer: React.FC = () => {
 
           {/* Function: register_student */}
           <div className="glass-card rounded-xl overflow-hidden border-white/5">
-            <button 
+            <button
               className="w-full flex items-center justify-between p-5 text-left transition-colors hover:bg-white/5"
               onClick={() => setOpenPanel(openPanel === 'register' ? null : 'register')}
             >
@@ -265,8 +265,8 @@ export const ContractExplorer: React.FC = () => {
                 <form className="space-y-4" onSubmit={(e) => { e.preventDefault(); handleRegister(); }}>
                   <div className="space-y-2">
                     <label className="text-[12px] font-bold text-on-surface-variant uppercase ml-1">Student Wallet (Address)</label>
-                    <input 
-                      type="text" 
+                    <input
+                      type="text"
                       value={registerWallet}
                       onChange={(e) => setRegisterWallet(e.target.value)}
                       placeholder="G... (leave blank for self)"
@@ -275,8 +275,8 @@ export const ContractExplorer: React.FC = () => {
                   </div>
                   <div className="space-y-2">
                     <label className="text-[12px] font-bold text-on-surface-variant uppercase ml-1">Student Name</label>
-                    <input 
-                      type="text" 
+                    <input
+                      type="text"
                       value={registerName}
                       onChange={(e) => setRegisterName(e.target.value)}
                       placeholder="Enter full name"
@@ -287,8 +287,8 @@ export const ContractExplorer: React.FC = () => {
                   <div className="grid grid-cols-2 gap-4">
                     <div className="space-y-2">
                       <label className="text-[12px] font-bold text-on-surface-variant uppercase ml-1">Metadata Hash</label>
-                      <input 
-                        type="text" 
+                      <input
+                        type="text"
                         value={metadataHash}
                         onChange={(e) => setMetadataHash(e.target.value)}
                         placeholder="0x..."
@@ -297,8 +297,8 @@ export const ContractExplorer: React.FC = () => {
                     </div>
                     <div className="space-y-2">
                       <label className="text-[12px] font-bold text-on-surface-variant uppercase ml-1">Referral Code</label>
-                      <input 
-                        type="text" 
+                      <input
+                        type="text"
                         value={referralCode}
                         onChange={(e) => setReferralCode(e.target.value)}
                         placeholder="Optional"
@@ -311,7 +311,7 @@ export const ContractExplorer: React.FC = () => {
                       <span className="material-symbols-outlined text-[18px]">info</span>
                       <span className="text-[12px]">Est. Cost: 0.002 XLM</span>
                     </div>
-                    <button 
+                    <button
                       type="submit"
                       className="px-6 py-2.5 bg-primary-container text-white rounded-xl font-bold shadow-lg shadow-primary/20 hover:brightness-110 active:scale-95 transition-all text-sm"
                     >
@@ -325,7 +325,7 @@ export const ContractExplorer: React.FC = () => {
 
           {/* Function: reward_student */}
           <div className="glass-card rounded-xl overflow-hidden border-white/5">
-            <button 
+            <button
               className="w-full flex items-center justify-between p-5 text-left transition-colors hover:bg-white/5"
               onClick={() => setOpenPanel(openPanel === 'reward' ? null : 'reward')}
             >
@@ -341,36 +341,36 @@ export const ContractExplorer: React.FC = () => {
               <span className={`material-symbols-outlined transition-transform duration-300 ${openPanel === 'reward' ? 'rotate-180' : ''}`}>expand_more</span>
             </button>
             {openPanel === 'reward' && (
-              <div className="p-5 pt-2 border-t border-white/5 bg-[#10131a]/40">
+              <div className="p-5 pt-2 border-t border-gray-200 dark:border-white/5 bg-gray-50/50 dark:bg-[#10131a]/40 text-gray-900 dark:text-white">
                 <form className="space-y-4" onSubmit={(e) => { e.preventDefault(); handleReward(); }}>
                   <div className="space-y-2">
-                    <label className="text-[12px] font-bold text-on-surface-variant uppercase ml-1">Recipient Wallet Address</label>
+                    <label className="text-[12px] font-bold text-gray-500 dark:text-on-surface-variant uppercase ml-1">Recipient Wallet Address</label>
                     <div className="flex gap-2">
                       <input 
                         type="text" 
                         value={rewardWallet}
                         onChange={(e) => setRewardWallet(e.target.value)}
                         placeholder="G..."
-                        className="flex-grow bg-black/40 border border-white/10 rounded-xl px-4 py-3 focus:outline-none focus:border-primary transition-colors text-on-surface text-sm"
+                        className="flex-grow bg-white dark:bg-black/40 border border-gray-250 dark:border-white/10 rounded-xl px-4 py-3 focus:outline-none focus:border-primary transition-colors text-gray-900 dark:text-on-surface text-sm placeholder:text-gray-400 dark:placeholder:text-on-surface-variant/40"
                         required
                       />
                       <button 
                         type="button" 
                         onClick={() => setRewardWallet(publicKey || '')}
-                        className="px-4 bg-white/5 border border-white/10 hover:bg-white/10 rounded-xl text-xs font-bold transition-all active:scale-95 text-on-surface"
+                        className="px-4 bg-gray-150 dark:bg-white/5 border border-gray-300 dark:border-white/10 hover:bg-gray-200 dark:hover:bg-white/10 rounded-xl text-xs font-bold transition-all active:scale-95 text-gray-900 dark:text-on-surface"
                       >
                         Me
                       </button>
                     </div>
                   </div>
                   <div className="space-y-2">
-                    <label className="text-[12px] font-bold text-on-surface-variant uppercase ml-1">Reward Points</label>
+                    <label className="text-[12px] font-bold text-gray-500 dark:text-on-surface-variant uppercase ml-1">Reward Points</label>
                     <input 
                       type="number" 
                       value={rewardPoints}
                       onChange={(e) => setRewardPoints(e.target.value)}
                       placeholder="e.g. 100"
-                      className="w-full bg-black/40 border border-white/10 rounded-xl px-4 py-3 focus:outline-none focus:border-primary transition-colors text-on-surface text-sm"
+                      className="w-full bg-white dark:bg-black/40 border border-gray-250 dark:border-white/10 rounded-xl px-4 py-3 focus:outline-none focus:border-primary transition-colors text-gray-900 dark:text-on-surface text-sm placeholder:text-gray-400 dark:placeholder:text-on-surface-variant/40"
                       required
                     />
                   </div>
@@ -387,7 +387,7 @@ export const ContractExplorer: React.FC = () => {
 
           {/* Function: get_student_points */}
           <div className="glass-card rounded-xl overflow-hidden border-white/5">
-            <button 
+            <button
               className="w-full flex items-center justify-between p-5 text-left transition-colors hover:bg-white/5"
               onClick={() => setOpenPanel(openPanel === 'query' ? null : 'query')}
             >
@@ -403,23 +403,23 @@ export const ContractExplorer: React.FC = () => {
               <span className={`material-symbols-outlined transition-transform duration-300 ${openPanel === 'query' ? 'rotate-180' : ''}`}>expand_more</span>
             </button>
             {openPanel === 'query' && (
-              <div className="p-5 pt-2 border-t border-white/5 bg-[#10131a]/40">
+              <div className="p-5 pt-2 border-t border-gray-200 dark:border-white/5 bg-gray-50/50 dark:bg-[#10131a]/40 text-gray-900 dark:text-white">
                 <form className="space-y-4" onSubmit={(e) => { e.preventDefault(); handleQueryPoints(); }}>
                   <div className="space-y-2">
-                    <label className="text-[12px] font-bold text-on-surface-variant uppercase ml-1">Student Wallet Address</label>
+                    <label className="text-[12px] font-bold text-gray-500 dark:text-on-surface-variant uppercase ml-1">Student Wallet Address</label>
                     <div className="flex gap-2">
                       <input 
                         type="text" 
                         value={queryWallet}
                         onChange={(e) => setQueryWallet(e.target.value)}
                         placeholder="G..."
-                        className="flex-grow bg-black/40 border border-white/10 rounded-xl px-4 py-3 focus:outline-none focus:border-primary transition-colors text-on-surface text-sm"
+                        className="flex-grow bg-white dark:bg-black/40 border border-gray-250 dark:border-white/10 rounded-xl px-4 py-3 focus:outline-none focus:border-primary transition-colors text-gray-900 dark:text-on-surface text-sm placeholder:text-gray-400 dark:placeholder:text-on-surface-variant/40"
                         required
                       />
                       <button 
                         type="button" 
                         onClick={() => setQueryWallet(publicKey || '')}
-                        className="px-4 bg-white/5 border border-white/10 hover:bg-white/10 rounded-xl text-xs font-bold transition-all active:scale-95 text-on-surface"
+                        className="px-4 bg-gray-150 dark:bg-white/5 border border-gray-300 dark:border-white/10 hover:bg-gray-200 dark:hover:bg-white/10 rounded-xl text-xs font-bold transition-all active:scale-95 text-gray-900 dark:text-on-surface"
                       >
                         Me
                       </button>
@@ -454,7 +454,7 @@ export const ContractExplorer: React.FC = () => {
               <span className={`material-symbols-outlined transition-transform duration-300 ${openPanel === 'admin' ? 'rotate-180' : ''}`}>expand_more</span>
             </button>
             {openPanel === 'admin' && (
-              <div className="p-5 pt-2 border-t border-white/5 bg-[#10131a]/40">
+              <div className="p-5 pt-2 border-t border-gray-200 dark:border-white/5 bg-gray-50/50 dark:bg-[#10131a]/40 text-gray-900 dark:text-white">
                 <div className="flex items-center gap-2 bg-error-container/20 p-3 rounded-lg border border-error/20 mb-4 text-error">
                   <span className="material-symbols-outlined text-error">warning</span>
                   <span className="text-xs text-on-error-container">This function requires Admin Signature (Multi-sig).</span>
@@ -488,7 +488,7 @@ export const ContractExplorer: React.FC = () => {
                 <div className="w-3 h-3 rounded-full bg-yellow-400/40"></div>
                 <div className="w-3 h-3 rounded-full bg-green-500/40"></div>
               </div>
-              <button 
+              <button
                 onClick={() => setLogs([])}
                 className="text-on-surface-variant hover:text-primary transition-colors active:scale-95"
                 title="Clear Logs"
@@ -501,11 +501,10 @@ export const ContractExplorer: React.FC = () => {
               {logs.map((log, idx) => (
                 <div key={idx} className="space-y-2 pt-2 border-t border-white/5 first:border-0 first:pt-0">
                   <div className="flex items-center justify-between">
-                    <span className={`font-bold ${
-                      log.type === 'TX_SUCCESS' ? 'text-primary' : 
-                      log.type === 'EVENT_EMITTED' ? 'text-tertiary' :
-                      log.type === 'ERROR' ? 'text-red-400' : 'text-[#ccc3d8] animate-pulse'
-                    }`}>
+                    <span className={`font-bold ${log.type === 'TX_SUCCESS' ? 'text-primary' :
+                        log.type === 'EVENT_EMITTED' ? 'text-tertiary' :
+                          log.type === 'ERROR' ? 'text-red-400' : 'text-[#ccc3d8] animate-pulse'
+                      }`}>
                       {log.timestamp} - [{log.type}]
                     </span>
                     {log.hash && (
