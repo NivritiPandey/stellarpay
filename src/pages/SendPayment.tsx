@@ -123,18 +123,18 @@ export const SendPayment: React.FC = () => {
   const currentErrorMessage = errorMessage || validateForm();
 
   return (
-    <div className="flex items-center justify-center min-h-[80vh] w-full py-stack-md text-white animate-fade-in-up">
+    <div className="flex items-center justify-center min-h-[80vh] w-full py-stack-md text-gray-900 dark:text-white animate-fade-in-up">
       <div className="w-full max-w-[540px]">
         {/* Title Header */}
         <div className="mb-stack-lg text-center lg:text-left">
-          <h2 className="font-headline-lg text-headline-lg text-on-surface mb-2 font-bold">Send Payment</h2>
-          <p className="font-body-md text-body-md text-on-surface-variant">
+          <h2 className="font-headline-lg text-headline-lg text-gray-900 dark:text-on-surface mb-2 font-bold">Send Payment</h2>
+          <p className="font-body-md text-body-md text-gray-600 dark:text-on-surface-variant">
             Transfer XLM instantly across the globe with institutional-grade security.
           </p>
         </div>
 
         {/* Glass Card Form */}
-        <div className="glass-card rounded-[32px] p-8 inner-glow relative border-white/5">
+        <div className="glass-card rounded-[32px] p-8 inner-glow relative border-gray-200 dark:border-white/5">
           {isSending && (
             <div className="absolute inset-0 bg-white/90 dark:bg-[#12141a]/95 backdrop-blur-md z-50 rounded-[32px] flex flex-col items-center justify-center gap-4 text-center p-6 border border-gray-200 dark:border-gray-800">
               <div className="relative flex items-center justify-center">
@@ -151,14 +151,14 @@ export const SendPayment: React.FC = () => {
           <form onSubmit={handleSend} className="relative z-10 flex flex-col gap-6">
             {/* Recipient Stellar Address */}
             <div className="flex flex-col gap-2">
-              <label className="font-label-md text-label-md text-on-surface ml-1 font-bold">Recipient Stellar Address</label>
-              <div className="group relative rounded-2xl bg-[#0b0e14]/80 border border-white/10 flex items-center px-4 py-4 focus-within:border-primary transition-all">
-                <span className="material-symbols-outlined text-on-surface-variant mr-3">account_balance_wallet</span>
+              <label className="font-label-md text-label-md text-gray-800 dark:text-on-surface ml-1 font-bold">Recipient Stellar Address</label>
+              <div className="group relative rounded-2xl bg-gray-50 dark:bg-[#0b0e14]/80 border border-gray-250 dark:border-white/10 flex items-center px-4 py-4 focus-within:border-primary transition-all">
+                <span className="material-symbols-outlined text-gray-500 dark:text-on-surface-variant mr-3">account_balance_wallet</span>
                 <input
                   type="text"
                   value={recipient}
                   onChange={(e) => setRecipient(e.target.value)}
-                  className="bg-transparent border-none focus:outline-none focus:ring-0 w-full font-body-md text-on-surface placeholder:text-on-surface-variant/40 outline-none"
+                  className="bg-transparent border-none focus:outline-none focus:ring-0 w-full font-body-md text-gray-900 dark:text-on-surface placeholder:text-gray-400 dark:placeholder:text-on-surface-variant/40 outline-none"
                   placeholder="G... or user*domain.com"
                   disabled={isSending}
                   required
@@ -171,20 +171,20 @@ export const SendPayment: React.FC = () => {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               {/* Amount */}
               <div className="flex flex-col gap-2">
-                <label className="font-label-md text-label-md text-on-surface ml-1 font-bold">Amount</label>
-                <div className={`group rounded-2xl bg-[#0b0e14]/80 border flex items-center px-4 py-4 focus-within:border-primary transition-all ${
-                  parseFloat(amount) > availableBalance ? 'border-error/40' : 'border-white/10'
+                <label className="font-label-md text-label-md text-gray-800 dark:text-on-surface ml-1 font-bold">Amount</label>
+                <div className={`group rounded-2xl bg-gray-50 dark:bg-[#0b0e14]/80 border flex items-center px-4 py-4 focus-within:border-primary transition-all ${
+                  parseFloat(amount) > availableBalance ? 'border-error/40' : 'border-gray-250 dark:border-white/10'
                 }`}>
                   <input
                     type="text"
                     value={amount}
                     onChange={(e) => setAmount(e.target.value)}
-                    className="bg-transparent border-none focus:outline-none focus:ring-0 w-full font-headline-md text-headline-md text-on-surface placeholder:text-on-surface-variant/40 outline-none"
+                    className="bg-transparent border-none focus:outline-none focus:ring-0 w-full font-headline-md text-headline-md text-gray-900 dark:text-on-surface placeholder:text-gray-400 dark:placeholder:text-on-surface-variant/40 outline-none"
                     placeholder="0.00"
                     disabled={isSending}
                     required
                   />
-                  <span className="font-label-md text-on-surface-variant font-bold">XLM</span>
+                  <span className="font-label-md text-gray-500 dark:text-on-surface-variant font-bold">XLM</span>
                 </div>
                 {currentErrorMessage && currentErrorMessage.includes('Insufficient') && (
                   <p className="text-error font-label-sm text-label-sm mt-1 flex items-center gap-1">
@@ -196,12 +196,12 @@ export const SendPayment: React.FC = () => {
 
               {/* Memo */}
               <div className="flex flex-col gap-2">
-                <label className="font-label-md text-label-md text-on-surface ml-1 font-bold">Memo (Optional)</label>
-                <div className="group rounded-2xl bg-[#0b0e14]/80 border border-white/10 flex items-center px-4 py-3 focus-within:border-primary transition-all h-full min-h-[72px]">
+                <label className="font-label-md text-label-md text-gray-800 dark:text-on-surface ml-1 font-bold">Memo (Optional)</label>
+                <div className="group rounded-2xl bg-gray-50 dark:bg-[#0b0e14]/80 border border-gray-250 dark:border-white/10 flex items-center px-4 py-3 focus-within:border-primary transition-all h-full min-h-[72px]">
                   <textarea
                     value={memo}
                     onChange={(e) => setMemo(e.target.value)}
-                    className="bg-transparent border-none focus:outline-none focus:ring-0 w-full font-body-md text-on-surface placeholder:text-on-surface-variant/40 resize-none h-full outline-none"
+                    className="bg-transparent border-none focus:outline-none focus:ring-0 w-full font-body-md text-gray-900 dark:text-on-surface placeholder:text-gray-400 dark:placeholder:text-on-surface-variant/40 resize-none h-full outline-none"
                     placeholder="Reference or message..."
                     maxLength={28}
                     disabled={isSending}
@@ -220,18 +220,18 @@ export const SendPayment: React.FC = () => {
 
             {/* Success Result Display */}
             {txHash && (
-              <div className="bg-[#007184]/20 border border-[#4cd7f6]/30 rounded-2xl p-4 space-y-3 text-white">
-                <div className="flex gap-3 text-[#4cd7f6]">
+              <div className="bg-[#007184]/20 border border-[#4cd7f6]/30 rounded-2xl p-4 space-y-3 text-[#4cd7f6]">
+                <div className="flex gap-3">
                   <span className="material-symbols-outlined text-[20px] flex-shrink-0">check_circle</span>
                   <div>
-                    <p className="text-sm font-bold">Transaction Confirmed!</p>
-                    <p className="text-xs text-on-surface-variant mt-0.5">Fund transfer was successfully submitted.</p>
+                    <p className="text-sm font-bold text-gray-900 dark:text-white">Transaction Confirmed!</p>
+                    <p className="text-xs text-gray-500 dark:text-on-surface-variant mt-0.5">Fund transfer was successfully submitted.</p>
                   </div>
                 </div>
-                <div className="pt-2 border-t border-white/5 flex flex-col gap-1">
-                  <span className="text-[10px] text-on-surface-variant uppercase tracking-wider">Transaction Hash</span>
-                  <div className="flex items-center justify-between gap-3 bg-[#0b0e14]/50 rounded-xl p-2.5 font-mono text-xs border border-white/5">
-                    <span className="break-all select-all text-white/90">{txHash}</span>
+                <div className="pt-2 border-t border-gray-200 dark:border-white/5 flex flex-col gap-1">
+                  <span className="text-[10px] text-gray-500 dark:text-on-surface-variant uppercase tracking-wider">Transaction Hash</span>
+                  <div className="flex items-center justify-between gap-3 bg-gray-100 dark:bg-[#0b0e14]/50 rounded-xl p-2.5 font-mono text-xs border border-gray-200 dark:border-white/5">
+                    <span className="break-all select-all text-gray-800 dark:text-white/90">{txHash}</span>
                     <button
                       type="button"
                       onClick={handleCopyHash}
@@ -248,21 +248,21 @@ export const SendPayment: React.FC = () => {
             )}
 
             {/* Transaction Preview Area */}
-            <div className="rounded-2xl bg-white/[0.03] p-5 border border-white/5">
-              <h4 className="font-label-md text-label-md font-bold mb-3 uppercase tracking-wider text-on-surface-variant">Transaction Preview</h4>
+            <div className="rounded-2xl bg-gray-50 dark:bg-white/[0.03] p-5 border border-gray-200 dark:border-white/5">
+              <h4 className="font-label-md text-label-md font-bold mb-3 uppercase tracking-wider text-gray-500 dark:text-on-surface-variant">Transaction Preview</h4>
               <div className="flex flex-col gap-3">
                 <div className="flex justify-between items-center">
-                  <span className="font-body-md text-on-surface-variant">Network Fee</span>
-                  <span className="font-label-md text-on-surface">0.00001 XLM</span>
+                  <span className="font-body-md text-gray-650 dark:text-on-surface-variant">Network Fee</span>
+                  <span className="font-label-md text-gray-900 dark:text-on-surface">0.00001 XLM</span>
                 </div>
                 <div className="flex justify-between items-center">
-                  <span className="font-body-md text-on-surface-variant">Processing Speed</span>
+                  <span className="font-body-md text-gray-650 dark:text-on-surface-variant">Processing Speed</span>
                   <span className="status-pill px-3 py-1 rounded-full text-[11px] font-bold">~2.5s Instant</span>
                 </div>
-                <div className="h-[1px] bg-white/10 my-1"></div>
+                <div className="h-[1px] bg-gray-200 dark:bg-white/10 my-1"></div>
                 <div className="flex justify-between items-center">
-                  <span className="font-label-md font-bold text-on-surface">Total Amount</span>
-                  <span className="font-headline-md text-headline-md text-primary">
+                  <span className="font-label-md font-bold text-gray-850 dark:text-on-surface">Total Amount</span>
+                  <span className="font-headline-md text-headline-md text-primary font-bold">
                     {amount && !isNaN(parseFloat(amount)) ? (parseFloat(amount) + 0.00001).toFixed(5) : '0.00001'} XLM
                   </span>
                 </div>
@@ -274,7 +274,7 @@ export const SendPayment: React.FC = () => {
               <button
                 type="submit"
                 disabled={isSending}
-                className="primary-gradient w-full py-5 rounded-[20px] font-headline-md text-headline-md text-white shadow-xl shadow-primary-container/20 active:scale-95 transition-all hover:brightness-110 flex items-center justify-center gap-3"
+                className="primary-gradient w-full py-5 rounded-[20px] font-headline-md text-headline-md text-white shadow-xl shadow-primary-container/20 active:scale-95 transition-all hover:brightness-110 flex items-center justify-center gap-3 font-bold"
               >
                 <span className="material-symbols-outlined">send</span>
                 {isConnected ? 'Send XLM' : 'Connect Wallet to Send'}
@@ -283,7 +283,7 @@ export const SendPayment: React.FC = () => {
                 type="button"
                 onClick={handleReset}
                 disabled={isSending}
-                className="w-full py-4 rounded-[20px] bg-white/5 border border-white/10 font-label-md text-label-md text-on-surface-variant hover:bg-white/10 active:scale-98 transition-all"
+                className="w-full py-4 rounded-[20px] bg-gray-150 dark:bg-white/5 border border-gray-300 dark:border-white/10 font-label-md text-label-md text-gray-600 dark:text-on-surface-variant hover:bg-gray-200 dark:hover:bg-white/10 active:scale-98 transition-all font-semibold"
               >
                 Clear Form
               </button>
@@ -292,7 +292,7 @@ export const SendPayment: React.FC = () => {
         </div>
 
         {/* Footer Meta */}
-        <div className="mt-8 flex justify-center gap-6 text-on-surface-variant/60 font-label-sm text-label-sm">
+        <div className="mt-8 flex justify-center gap-6 text-gray-500 dark:text-on-surface-variant/60 font-label-sm text-label-sm">
           <span className="flex items-center gap-1"><span className="material-symbols-outlined text-[14px]">verified_user</span> End-to-End Encrypted</span>
           <span className="flex items-center gap-1"><span className="material-symbols-outlined text-[14px]">speed</span> Fast Settlement</span>
         </div>

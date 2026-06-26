@@ -98,23 +98,23 @@ export const Dashboard: React.FC = () => {
     <div className="space-y-stack-lg animate-fade-in-up">
       <section className="grid grid-cols-1 md:grid-cols-12 gap-gutter">
         {/* Wallet Overview (Main Focus) */}
-        <div className="md:col-span-7 glass-card rounded-3xl p-stack-lg relative overflow-hidden group border-white/5 text-white">
+        <div className="md:col-span-7 glass-card rounded-3xl p-stack-lg relative overflow-hidden group text-gray-900 dark:text-white">
           {/* Decorative Gradient */}
           <div className="absolute -top-24 -right-24 w-64 h-64 bg-primary/20 blur-[100px] pointer-events-none group-hover:bg-primary/30 transition-colors"></div>
           <div className="flex justify-between items-start mb-10">
             <div>
-              <p className="font-label-md text-label-md text-on-surface-variant uppercase tracking-widest mb-1">Total Balance</p>
-              <h3 className="font-display text-[42px] leading-none mb-2 text-white">
-                {displayBalance} <span className="text-primary font-bold">XLM</span>
+              <p className="font-label-md text-label-md text-gray-500 dark:text-on-surface-variant uppercase tracking-widest mb-1">Total Balance</p>
+              <h3 className="font-display text-[42px] leading-none mb-2 text-gray-900 dark:text-white">
+                {displayBalance} <span className="text-black dark:text-white font-bold">XLM</span>
               </h3>
-              <p className="text-on-surface-variant flex items-center gap-1.5 mt-2">
+              <p className="text-gray-600 dark:text-on-surface-variant flex items-center gap-1.5 mt-2">
                 <span className="material-symbols-outlined text-[18px]">verified_user</span>
                 <span className="font-label-sm text-label-sm font-mono mr-1">
                   {truncateAddress(publicKey)}
                 </span>
                 <button
                   onClick={handleCopy}
-                  className="hover:text-white transition-colors p-1 flex items-center active:scale-90"
+                  className="hover:text-black dark:hover:text-white transition-colors p-1 flex items-center active:scale-90"
                   title="Copy Address"
                 >
                   <span className="material-symbols-outlined text-[16px]">
@@ -145,15 +145,15 @@ export const Dashboard: React.FC = () => {
               </button>
             )}
           </div>
-          <div className="grid grid-cols-2 gap-stack-md pt-4 border-t border-white/5">
+          <div className="grid grid-cols-2 gap-stack-md pt-4 border-t border-gray-150 dark:border-white/5">
             <div>
-              <p className="font-label-sm text-label-sm text-on-surface-variant mb-1">Est. Value</p>
-              <p className="font-headline-md text-headline-md text-white">
+              <p className="font-label-sm text-label-sm text-gray-500 dark:text-on-surface-variant mb-1">Est. Value</p>
+              <p className="font-headline-md text-headline-md text-gray-900 dark:text-white">
                 ${displayUsdValue} USD
               </p>
             </div>
             <div className="text-right">
-              <p className="font-label-sm text-label-sm text-on-surface-variant mb-1">Network</p>
+              <p className="font-label-sm text-label-sm text-gray-500 dark:text-on-surface-variant mb-1">Network</p>
               <p className="font-headline-md text-headline-md text-tertiary uppercase">
                 {isConnected ? (network || 'Testnet') : 'Horizon v2.0'}
               </p>
@@ -165,7 +165,7 @@ export const Dashboard: React.FC = () => {
         <div className="md:col-span-5 grid grid-cols-2 gap-gutter">
           <button
             onClick={() => navigate('/send')}
-            className="glass-card rounded-3xl p-stack-md flex flex-col items-center justify-center gap-2 group hover:bg-primary/5 transition-all active:scale-95 border-b-4 border-b-primary/40 border-white/5 text-white"
+            className="glass-card rounded-3xl p-stack-md flex flex-col items-center justify-center gap-2 group hover:bg-gray-100 dark:hover:bg-primary/5 transition-all active:scale-95 border-b-4 border-b-primary/40 text-gray-900 dark:text-white"
           >
             <div className="w-12 h-12 rounded-2xl bg-primary/10 text-primary flex items-center justify-center group-hover:scale-110 transition-transform">
               <span className="material-symbols-outlined text-3xl">send</span>
@@ -174,7 +174,7 @@ export const Dashboard: React.FC = () => {
           </button>
           <button
             onClick={() => navigate('/rewards')}
-            className="glass-card rounded-3xl p-stack-md flex flex-col items-center justify-center gap-2 group hover:bg-secondary/5 transition-all active:scale-95 border-b-4 border-b-secondary/40 border-white/5 text-white"
+            className="glass-card rounded-3xl p-stack-md flex flex-col items-center justify-center gap-2 group hover:bg-gray-100 dark:hover:bg-secondary/5 transition-all active:scale-95 border-b-4 border-b-secondary/40 text-gray-900 dark:text-white"
           >
             <div className="w-12 h-12 rounded-2xl bg-secondary/10 text-secondary flex items-center justify-center group-hover:scale-110 transition-transform">
               <span className="material-symbols-outlined text-3xl">star</span>
@@ -183,7 +183,7 @@ export const Dashboard: React.FC = () => {
           </button>
           <button
             onClick={() => navigate('/events')}
-            className="glass-card rounded-3xl p-stack-md flex flex-col items-center justify-center gap-2 group hover:bg-tertiary/5 transition-all active:scale-95 border-b-4 border-b-tertiary/40 col-span-2 border-white/5 text-white"
+            className="glass-card rounded-3xl p-stack-md flex flex-col items-center justify-center gap-2 group hover:bg-gray-100 dark:hover:bg-tertiary/5 transition-all active:scale-95 border-b-4 border-b-tertiary/40 col-span-2 text-gray-900 dark:text-white"
           >
             <div className="w-10 h-10 rounded-2xl bg-tertiary/10 text-tertiary flex items-center justify-center group-hover:scale-110 transition-transform">
               <span className="material-symbols-outlined">event</span>
@@ -196,12 +196,12 @@ export const Dashboard: React.FC = () => {
       {/* Secondary Row: Activity & Network */}
       <section className="grid grid-cols-1 md:grid-cols-12 gap-gutter">
         {/* Recent Activity List */}
-        <div className="md:col-span-8 glass-card rounded-3xl p-stack-lg border-white/5 text-white">
+        <div className="md:col-span-8 glass-card rounded-3xl p-stack-lg text-gray-900 dark:text-white">
           <div className="flex justify-between items-center mb-6">
             <h4 className="font-headline-md text-headline-md font-bold">Recent Activity</h4>
             <button
               onClick={() => navigate('/events')}
-              className="text-primary font-label-md text-label-md hover:underline"
+              className="text-primary font-label-md text-label-md hover:underline font-bold"
             >
               View Ledger
             </button>
@@ -217,7 +217,7 @@ export const Dashboard: React.FC = () => {
               // Fallback mockup transactions list
               mockPayments.map((p, idx) => (
                 <React.Fragment key={p.id}>
-                  <div className="flex items-center justify-between p-4 rounded-2xl hover:bg-white/5 transition-colors group cursor-pointer">
+                  <div className="flex items-center justify-between p-4 rounded-2xl hover:bg-gray-100 dark:hover:bg-white/5 transition-colors group cursor-pointer text-gray-900 dark:text-white">
                     <div className="flex items-center gap-4">
                       <div className={`w-10 h-10 rounded-xl flex items-center justify-center ${
                         p.isSent ? 'bg-error-container/20 text-error' : 'bg-tertiary-container/20 text-tertiary'
@@ -228,7 +228,7 @@ export const Dashboard: React.FC = () => {
                       </div>
                       <div>
                         <p className="font-label-md text-label-md font-bold">{p.description}</p>
-                        <p className="text-[12px] text-on-surface-variant">{p.timeStr}</p>
+                        <p className="text-[12px] text-gray-500 dark:text-on-surface-variant">{p.timeStr}</p>
                       </div>
                     </div>
                     <div className="text-right">
@@ -242,7 +242,7 @@ export const Dashboard: React.FC = () => {
                       }`}>{p.status}</span>
                     </div>
                   </div>
-                  {idx < mockPayments.length - 1 && <div className="h-px bg-white/5 mx-4"></div>}
+                  {idx < mockPayments.length - 1 && <div className="h-px bg-gray-200 dark:bg-white/5 mx-4"></div>}
                 </React.Fragment>
               ))
             ) : (
@@ -266,17 +266,17 @@ export const Dashboard: React.FC = () => {
                       minute: '2-digit' 
                     })
                   : 'Recent';
-
+ 
                 let description = '';
                 if (p.type === 'create_account') {
                   description = isSent ? `Funded Wallet ${truncateParty}` : 'Stellar Faucet Drop';
                 } else {
                   description = isSent ? `Sent to ${truncateParty}` : `Received from ${truncateParty}`;
                 }
-
+ 
                 return (
                   <React.Fragment key={p.id}>
-                    <div className="flex items-center justify-between p-4 rounded-2xl hover:bg-white/5 transition-colors group">
+                    <div className="flex items-center justify-between p-4 rounded-2xl hover:bg-gray-100 dark:hover:bg-white/5 transition-colors group text-gray-900 dark:text-white">
                       <div className="flex items-center gap-4">
                         <div className={`w-10 h-10 rounded-xl flex items-center justify-center ${
                           isSent ? 'bg-error-container/20 text-error' : 'bg-tertiary-container/20 text-tertiary'
@@ -287,7 +287,7 @@ export const Dashboard: React.FC = () => {
                         </div>
                         <div>
                           <p className="font-label-md text-label-md font-bold">{description}</p>
-                          <p className="text-[12px] text-on-surface-variant">{timeStr}</p>
+                          <p className="text-[12px] text-gray-500 dark:text-on-surface-variant">{timeStr}</p>
                         </div>
                       </div>
                       <div className="text-right">
@@ -299,58 +299,58 @@ export const Dashboard: React.FC = () => {
                         <span className="text-[10px] bg-secondary-container/10 text-secondary-container px-2 py-0.5 rounded-full font-bold uppercase tracking-tighter">Success</span>
                       </div>
                     </div>
-                    {idx < payments.length - 1 && <div className="h-[1px] bg-white/5 mx-4"></div>}
+                    {idx < payments.length - 1 && <div className="h-[1px] bg-gray-200 dark:bg-white/5 mx-4"></div>}
                   </React.Fragment>
                 );
               })
             )}
           </div>
         </div>
-
+ 
         {/* Network Status Card */}
-        <div className="md:col-span-4 flex flex-col gap-gutter text-white">
-          <div className="glass-card rounded-3xl p-stack-lg flex-1 border-white/5">
+        <div className="md:col-span-4 flex flex-col gap-gutter text-gray-900 dark:text-white">
+          <div className="glass-card rounded-3xl p-stack-lg flex-1">
             <h4 className="font-label-md text-label-md font-bold mb-4 flex items-center gap-2">
               <span className="material-symbols-outlined text-[18px]">hub</span>
               Network Health
             </h4>
             <div className="space-y-4">
               <div className="flex justify-between items-end">
-                <span className="font-label-sm text-label-sm text-on-surface-variant">Status</span>
+                <span className="font-label-sm text-label-sm text-gray-500 dark:text-on-surface-variant">Status</span>
                 <span className="font-label-sm text-label-sm font-bold text-tertiary">Healthy</span>
               </div>
-              <div className="w-full bg-white/10 h-1 rounded-full overflow-hidden">
+              <div className="w-full bg-gray-200 dark:bg-white/10 h-1 rounded-full overflow-hidden">
                 <div className="bg-tertiary h-full w-[98%]"></div>
               </div>
               <div className="grid grid-cols-2 gap-4 pt-2">
                 <div>
-                  <p className="text-[10px] text-on-surface-variant uppercase font-bold">Ops/Sec</p>
-                  <p className="font-headline-md text-headline-md text-white font-bold">248</p>
+                  <p className="text-[10px] text-gray-500 dark:text-on-surface-variant uppercase font-bold">Ops/Sec</p>
+                  <p className="font-headline-md text-headline-md text-gray-900 dark:text-white font-bold">248</p>
                 </div>
                 <div>
-                  <p className="text-[10px] text-on-surface-variant uppercase font-bold">Fee</p>
-                  <p className="font-headline-md text-headline-md text-white font-bold">100<span className="text-label-sm text-xs text-on-surface-variant"> stroops</span></p>
+                  <p className="text-[10px] text-gray-500 dark:text-on-surface-variant uppercase font-bold">Fee</p>
+                  <p className="font-headline-md text-headline-md text-gray-900 dark:text-white font-bold">100<span className="text-label-sm text-xs text-gray-500 dark:text-on-surface-variant"> stroops</span></p>
                 </div>
               </div>
             </div>
           </div>
-
-          <div className="bg-[#32353c] rounded-3xl p-6 border border-white/5">
+ 
+          <div className="bg-gray-100 dark:bg-surface-variant rounded-3xl p-6 border border-gray-200 dark:border-white/5 text-gray-900 dark:text-white">
             <h4 className="font-label-md text-label-md font-bold mb-3">Community Reward</h4>
-            <p className="text-label-sm text-on-surface-variant mb-4 leading-relaxed">Stake your XLM to earn up to 5.2% APR in weekly rewards.</p>
+            <p className="text-label-sm text-gray-650 dark:text-on-surface-variant mb-4 leading-relaxed">Stake your XLM to earn up to 5.2% APR in weekly rewards.</p>
             <button
               onClick={() => navigate('/rewards')}
-              className="w-full py-2 bg-white/5 border border-white/10 rounded-xl font-label-md text-label-md hover:bg-white/10 transition-all text-white active:scale-95"
+              className="w-full py-2 bg-white dark:bg-white/5 border border-gray-300 dark:border-white/10 rounded-xl font-label-md text-label-md hover:bg-gray-50 dark:hover:bg-white/10 transition-all text-gray-900 dark:text-white active:scale-95 shadow-sm font-bold"
             >
               Start Staking
             </button>
           </div>
         </div>
       </section>
-
+ 
       {/* Loading Skeletons Demo Section */}
-      <section className="glass-card rounded-3xl p-stack-lg border-white/5 text-white">
-        <h4 className="font-label-md text-label-md font-bold mb-6 text-on-surface-variant">Asset Loading Preview</h4>
+      <section className="glass-card rounded-3xl p-stack-lg text-gray-900 dark:text-white">
+        <h4 className="font-label-md text-label-md font-bold mb-6 text-gray-500 dark:text-on-surface-variant">Asset Loading Preview</h4>
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-gutter">
           <div className="space-y-3">
             <div className="skeleton h-12 w-12 rounded-xl"></div>

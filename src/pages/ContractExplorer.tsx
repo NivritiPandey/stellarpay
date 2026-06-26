@@ -194,10 +194,10 @@ export const ContractExplorer: React.FC = () => {
   };
 
   return (
-    <div className="space-y-stack-lg animate-fade-in-up text-white pb-8">
+    <div className="space-y-stack-lg animate-fade-in-up text-gray-900 dark:text-white pb-8">
       {/* Contract ID Header Card */}
       <section className="mb-stack-lg">
-        <div className="glass-card rounded-2xl p-6 lg:p-8 flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6 overflow-hidden relative border-white/5">
+        <div className="glass-card rounded-2xl p-6 lg:p-8 flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6 overflow-hidden relative border-gray-200 dark:border-white/5">
           {/* Atmospheric background element */}
           <div className="absolute -top-24 -right-24 w-64 h-64 bg-primary/10 blur-[100px] rounded-full"></div>
           <div className="z-10 w-full lg:w-auto">
@@ -208,26 +208,26 @@ export const ContractExplorer: React.FC = () => {
                 <span className="text-[12px] font-bold uppercase">Active</span>
               </div>
             </div>
-            <h3 className="font-headline-lg-mobile lg:font-headline-lg text-on-surface break-all lg:break-normal font-bold">
+            <h3 className="font-headline-lg-mobile lg:font-headline-lg text-gray-900 dark:text-white break-all lg:break-normal font-bold">
               CDE...789XYZ_STPay_Core
             </h3>
             <div className="mt-4 flex flex-wrap items-center gap-3">
-              <code className="text-[13px] bg-black/40 px-3 py-1.5 rounded-lg border border-white/5 text-on-surface-variant font-mono break-all max-w-[280px] sm:max-w-none">
+              <code className="text-[13px] bg-gray-100 dark:bg-black/40 px-3 py-1.5 rounded-lg border border-gray-200 dark:border-white/5 text-gray-600 dark:text-on-surface-variant font-mono break-all max-w-[280px] sm:max-w-none">
                 {contractId}
               </code>
-              <button onClick={handleCopy} className="p-2 hover:bg-white/10 rounded-lg transition-colors text-primary flex items-center gap-2 active:scale-95">
+              <button onClick={handleCopy} className="p-2 hover:bg-gray-150 dark:hover:bg-white/10 rounded-lg transition-colors text-primary flex items-center gap-2 active:scale-95">
                 <span className="material-symbols-outlined text-[20px]">content_copy</span>
                 <span className="text-[12px] font-bold uppercase tracking-wide">Copy ID</span>
               </button>
             </div>
           </div>
-          <div className="z-10 flex gap-4 w-full lg:w-auto">
-            <div className="flex-1 lg:flex-none bg-black/20 p-4 rounded-xl border border-white/5 text-center min-w-[100px]">
-              <p className="text-[11px] text-on-surface-variant uppercase tracking-widest font-bold mb-1">Total Calls</p>
-              <p className="text-2xl font-bold text-on-surface">1.2M</p>
+          <div className="z-10 flex gap-4 w-full lg:w-auto text-gray-900 dark:text-white">
+            <div className="flex-1 lg:flex-none bg-gray-100 dark:bg-black/20 p-4 rounded-xl border border-gray-200 dark:border-white/5 text-center min-w-[100px]">
+              <p className="text-[11px] text-gray-500 dark:text-on-surface-variant uppercase tracking-widest font-bold mb-1">Total Calls</p>
+              <p className="text-2xl font-bold text-gray-900 dark:text-white">1.2M</p>
             </div>
-            <div className="flex-1 lg:flex-none bg-black/20 p-4 rounded-xl border border-white/5 text-center min-w-[100px]">
-              <p className="text-[11px] text-on-surface-variant uppercase tracking-widest font-bold mb-1">Gas Used</p>
+            <div className="flex-1 lg:flex-none bg-gray-100 dark:bg-black/20 p-4 rounded-xl border border-gray-200 dark:border-white/5 text-center min-w-[100px]">
+              <p className="text-[11px] text-gray-500 dark:text-on-surface-variant uppercase tracking-widest font-bold mb-1">Gas Used</p>
               <p className="text-2xl font-bold text-tertiary">42.8 Gwei</p>
             </div>
           </div>
