@@ -1,6 +1,18 @@
-# StellarPay Student Wallet & Soroban Rewards - Level 3
+# StellarPay
 
-**Live Deployment:** [https://stellarpay-phi.vercel.app/](https://stellarpay-phi.vercel.app/)
+### Decentralized Student Wallet & Soroban Rewards Platform
+
+🎥 **Demo Video**
+
+[StellarPay Demo Video](https://drive.google.com/file/d/1XdiRBa6sInlLqmFSyftHdSAv9h8t1sje/view) (Placeholder/User Video)
+
+🌐 **Live Demo**
+
+[StellarPay Live App](https://stellarpay-phi.vercel.app/)
+
+---
+
+# Overview
 
 StellarPay is a production-quality Stellar dApp designed specifically for students. It combines the speed of the Stellar network with the power of Soroban smart contracts to create a modern, rewarding payment ecosystem.
 
@@ -8,116 +20,86 @@ This repository contains both the **Soroban smart contracts** and the **Vite Rea
 
 ---
 
-## 📂 Smart Contract Project Structure
+# Features
 
-The smart contracts are located under the [`contracts/`](file:///c:/Users/SPANDEY/OneDrive%20-%20Luxmi%20Tea/Desktop/stitch_stellarpay/contracts) directory, adhering to the standard Rust/Soroban workspace format:
-
-```text
-contracts/
-├── Cargo.toml                  # Workspace manifest
-├── Cargo.lock                  # Lockfile
-├── student_registry/           # Student registration registry contract
-│   ├── Cargo.toml
-│   └── src/
-│       └── lib.rs              # Contract implementation & tests
-└── reward_vault/               # Points minting and rewards claim contract
-    ├── Cargo.toml
-    └── src/
-        └── lib.rs              # Contract implementation & tests
-```
-
-### 1. Student Registry Contract
-*   **Contract ID**: `CBZD7SUMJYITJLX33IS3IXIIIPS7TRO5IM5TAGKJNINVY3I6O44VK56P`
-*   **Source Code**: [`contracts/student_registry/src/lib.rs`](file:///c:/Users/SPANDEY/OneDrive%20-%20Luxmi%20Tea/Desktop/stitch_stellarpay/contracts/student_registry/src/lib.rs)
-*   **Functions**:
-    *   `register_student(student: Address, name: String)`: Registers a student's public key with their name.
-    *   `is_registered(student: Address) -> bool`: Checks if the student is registered.
-    *   `get_student_name(student: Address) -> String`: Retrieves the student's registered name.
-
-### 2. Reward Vault Contract (Inter-contract Communication)
-*   **Contract ID**: `CCE45FVYK5ZZHG2JHJZ5LMZKDH7P3IDBIKHE7RQLDBWEBSDZLPIX42QL`
-*   **Source Code**: [`contracts/reward_vault/src/lib.rs`](file:///c:/Users/SPANDEY/OneDrive%20-%20Luxmi%20Tea/Desktop/stitch_stellarpay/contracts/reward_vault/src/lib.rs)
-*   **Inter-contract Pattern**: Uses standard `StudentRegistryClient` to make cross-contract calls to verify registration on the `student_registry` contract before executing minting/claim actions.
-*   **Functions**:
-    *   `initialize(registry: Address)`: Links the vault to the Student Registry contract.
-    *   `register_student(student: Address, name: String)`: Proxy registration helper.
-    *   `reward_student(student: Address, points: u32)`: Awards and mints points for a registered student.
-    *   `claim_reward(student: Address, points: u32)`: Deducts points to redeem reward milestones.
-    *   `get_student_points(student: Address) -> u32`: Fetches the student's reward points balance.
+- **Multi-Wallet Support**: Freighter, Albedo, Private Secret Keys, BIP-39 Recovery Mnemonics, and Read-Only Address modes.
+- **Smart Contract Rewards**: Points minting and claims on the Stellar Testnet.
+- **Inter-Contract Architecture**: `RewardVault` contract verifies registration on `StudentRegistry` on-chain before executing actions.
+- **Real-Time Logging**: Live transaction streaming and log terminal in the explorer view.
+- **High-Contrast Design**: Sleek, responsive monochromatic light/dark interface.
+- **CI/CD Build Pipeline**: Automatic testing and build validation via GitHub Actions.
 
 ---
 
-## 🚀 Deployed Testnet Contract & App Proof
+# Tech Stack
 
-The application is deployed and the smart contracts are verified on the **Stellar Testnet**:
-*   **Live App Deployment**: [https://stellarpay-phi.vercel.app/](https://stellarpay-phi.vercel.app/)
-*   **Registry Contract Address**: `CBZD7SUMJYITJLX33IS3IXIIIPS7TRO5IM5TAGKJNINVY3I6O44VK56P`
-*   **Reward Vault Contract Address**: `CCE45FVYK5ZZHG2JHJZ5LMZKDH7P3IDBIKHE7RQLDBWEBSDZLPIX42QL`
-*   **Initialization Tx Hash**: `80a65f7740a0b589e1a9424bf98600e12ea8d2ef` (Initial setup and linking sequence)
+## Frontend
+- React
+- Vite
+- Tailwind CSS & Vanilla CSS
+- TypeScript
 
-The frontend is configured to interact with the Reward Vault at `CCE45FVYK5ZZHG2JHJZ5LMZKDH7P3IDBIKHE7RQLDBWEBSDZLPIX42QL` using `.env` settings:
-```env
-VITE_NETWORK=testnet
-VITE_CONTRACT_ID=CCE45FVYK5ZZHG2JHJZ5LMZKDH7P3IDBIKHE7RQLDBWEBSDZLPIX42QL
+## Blockchain
+- `@stellar/stellar-sdk`
+- Horizon API
+- Soroban RPC
+
+## Wallets
+- Freighter
+- Albedo
+- BIP-39 local keys
+
+---
+
+# Architecture
+
+```mermaid
+flowchart TD
+    User --> Wallet
+    Wallet --> Frontend
+    Frontend --> SorobanRPC
+    SorobanRPC --> RewardVault[Reward Vault Contract]
+    RewardVault -->|Cross-Contract Check| StudentRegistry[Student Registry Contract]
+    RewardVault --> StellarTestnet
+    StudentRegistry --> StellarTestnet
 ```
 
 ---
 
-## 🛠 CI/CD Pipeline
+# On-Chain Deployments (Stellar Testnet)
 
-The project features a automated CI/CD workflow defined in [`.github/workflows/ci.yml`](file:///c:/Users/SPANDEY/OneDrive%20-%20Luxmi%20Tea/Desktop/stitch_stellarpay/.github/workflows/ci.yml):
-- **Rust Contract Verifications**: Performs compilation targeting WebAssembly and executes unit tests for all smart contracts (`student_registry` and `reward_vault`).
-- **Frontend Build Verification**: Installs, lints, and builds the Vite React client app.
+- **Student Registry Contract ID**: `CBZD7SUMJYITJLX33IS3IXIIIPS7TRO5IM5TAGKJNINVY3I6O44VK56P`
+- **Reward Vault Contract ID**: `CCE45FVYK5ZZHG2JHJZ5LMZKDH7P3IDBIKHE7RQLDBWEBSDZLPIX42QL`
+- **Vault Link Initialization Hash**: `80a65f7740a0b589e1a9424bf98600e12ea8d2ef`
 
 ---
 
-## 🧪 Smart Contract Testing
+# Screenshots
 
-To run smart contract tests locally:
+### CI/CD Pipeline Running
+<img width="958" height="474" alt="image" src="https://github.com/user-attachments/assets/828c2d82-798c-4d27-aac7-a917ea704c8c" />
+
+---
+
+# Getting Started
+
+## Smart Contract Workspace
+To run Rust contract tests locally:
 ```bash
 cd contracts
 cargo test
 ```
-**Test Results**:
-- `test_registration` ... ok
-- `test_unregistered_student_rewards` ... ok
-- `test_rewards_vault_flow` ... ok
-- Total: 3 passed; 0 failed
 
----
-
-## 🛠 Frontend Features
-
-1.  **Multi-Wallet Connection**:
-    *   **Freighter Wallet**: Standard browser extension connection and signing.
-    *   **Albedo Wallet**: Web-based key management and signing.
-    *   **Developer Secret Key**: Input developer secret key to sign locally in session.
-    *   **Recovery Mnemonic (BIP-39)**: 12-word recovery phrase connection deriving public/private keys locally and securely signing.
-    *   **Read-Only Address**: Connect using a public address to view balances.
-2.  **Monochromatic Redesign**: Sleek, premium dark/light monochromatic theme.
-3.  **Soroban Event Stream**: Real-time event polling and transaction status monitoring.
-4.  **Error Handling**: Catches signature rejections, network timeouts, and unregistered account simulation errors.
-
-### Screenshots
-CI/CD pipeline running
-<img width="958" height="474" alt="image" src="https://github.com/user-attachments/assets/828c2d82-798c-4d27-aac7-a917ea704c8c" />
-
-
-
-## 📋 Installation & Running Locally
-
-1.  **Install Dependencies**:
-    ```bash
-    npm install
-    ```
-
-2.  **Run Dev Server**:
-    ```bash
-    npm run dev
-    ```
-    Open `http://localhost:5173/` in your browser.
-
-3.  **Build**:
-    ```bash
-    npm run build
-    ```
+## Frontend Application
+1. **Install dependencies**:
+   ```bash
+   npm install
+   ```
+2. **Run dev server**:
+   ```bash
+   npm run dev
+   ```
+3. **Build bundle**:
+   ```bash
+   npm run build
+   ```
