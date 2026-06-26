@@ -98,7 +98,11 @@ cargo test
 3.  **Soroban Event Stream**: Real-time event polling and transaction status monitoring.
 4.  **Error Handling**: Catches signature rejections, network timeouts, and unregistered account simulation errors.
 
----
+### Screenshots
+CI/CD pipeline running
+<img width="958" height="474" alt="image" src="https://github.com/user-attachments/assets/828c2d82-798c-4d27-aac7-a917ea704c8c" />
+
+
 
 ## 📋 Installation & Running Locally
 
