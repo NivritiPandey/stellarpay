@@ -86,6 +86,14 @@ flowchart TD
 ![alt text](image-1.png)
 ---
 
+## 🌐 Deployed Smart Contract (Level 2 Testnet Proof)
+
+The Soroban smart contract is deployed on the Stellar Testnet:
+
+- **Contract ID**: `CCE45FVYK5ZZHG2JHJZ5LMZKDH7P3IDBIKHE7RQLDBWEBSDZLPIX42QL`
+- **Stellar.expert Explorer Link**: [Stellar.expert Testnet Explorer - Contract CCE45F...](https://stellar.expert/explorer/testnet/contract/CCE45FVYK5ZZHG2JHJZ5LMZKDH7P3IDBIKHE7RQLDBWEBSDZLPIX42QL)
+
+
 # Getting Started
 
 ## Smart Contract Workspace
